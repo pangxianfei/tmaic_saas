@@ -1,7 +1,6 @@
 package models
 
 import (
-	"github.com/pangxianfei/framework/helpers/hash"
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/helpers/ptr"
 	"github.com/pangxianfei/framework/helpers/zone"
@@ -48,7 +47,7 @@ func (user *User) User() *User {
 
 
 func (user *User) SetNameAttribute(value interface{}) {
-	user.Name = ptr.String(hash.Md5(*user.Email))
+	user.Name = user.Email
 }
 
 func (user *User) GetPasswordAttribute(value interface{}) interface{} {

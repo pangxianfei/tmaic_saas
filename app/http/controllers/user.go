@@ -1,22 +1,25 @@
 package controllers
 
 import (
-	"net/http"
 
 	"github.com/pangxianfei/framework/config"
+	"github.com/pangxianfei/framework/model"
+	"net/http"
+
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/helpers/toto"
 	"github.com/pangxianfei/framework/http/controller"
 	"github.com/pangxianfei/framework/http/middleware"
-	"github.com/pangxianfei/framework/policy"
+	//"github.com/pangxianfei/framework/policy"
 	"github.com/pangxianfei/framework/request"
 
 	"tmaic/app/models"
-	"tmaic/app/policies"
+	//"tmaic/app/policies"
 )
 
 type User struct {
 	controller.BaseController
+	model.BaseModel
 }
 
 func (*User) LogOut(c request.Context) {
@@ -29,15 +32,13 @@ func (*User) LogOut(c request.Context) {
 }
 
 func (u *User) Info(c request.Context) {
+
 	if c.ScanUserWithJSON() {
 		return
 	}
 	user := c.User().Value().(*models.User)
 
-	if permit, _ := u.Authorize(c, policies.NewUserPolicy(), policy.ActionView); !permit {
-		c.JSON(http.StatusForbidden, toto.V{"error": policy.UserNotPermitError{}.Error()})
-		return
-	}
+ 
 
 	c.JSON(http.StatusOK, toto.V{"data": user})
 	return
@@ -53,32 +54,16 @@ func (*User) PaginateUser(c request.Context) {
 	return
 }
 
-func (*User) Update(c request.Context) {
-	var id uint
-	id = 14
-	user := models.User{
-		ID: &id,
-	}
-	if err := m.H().First(&user, false); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, toto.V{"error": err.Error()})
-		return
-	}
+func (u *User) Update(c request.Context) {
 
-	name := "t2222es123t"
-	modifyUser := models.User{
-		Name: &name,
-	}
-	if err := m.H().Save(&user, modifyUser); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, toto.V{"error": err})
-		return
-	}
-	c.JSON(http.StatusOK, toto.V{"data": user})
+	var id uint
+	id = 72
+
+
+	c.JSON(http.StatusOK, toto.V{"data": id})
 	return
 
-	// m.Transaction(func() {
-	// 	fmt.Println(id)
-	// 	panic(123)
-	// }, 3)
+
 }
 func (*User) Delete(c request.Context) {
 	var id uint

@@ -3,7 +3,7 @@ package policies
 import (
 	"strconv"
 
-	"github.com/pangxianfei/framework/helpers/debug"
+	//"github.com/pangxianfei/framework/helpers/debug"
 	"github.com/pangxianfei/framework/request/http/auth"
 	"tmaic/app/models"
 )
@@ -33,7 +33,7 @@ func (up *userPolicy) ForceDelete(IUser auth.IUser, routeParamMap map[string]str
 func (up *userPolicy) View(IUser auth.IUser, routeParamMap map[string]string) bool {
 	//获取当前用户
 	currentUser := IUser.Value().(*models.User)
-	debug.Dump(currentUser, routeParamMap)
+	//debug.Dump(currentUser, routeParamMap)
 
 	//如果使用Authorize func，则routeParamap为空 
 	if routeParamMap == nil {

@@ -18,6 +18,7 @@ func NewV1(engine *request.Engine) {
 	// no auth routes
 	ver.NoAuth("", func(grp route.Grouper) {
 		grp.AddGroup("", &groups.AuthGroup{})
-		//grp.AddGroup("/user-affiliation", &groups.UserAffiliationGroup{})
+		grp.AddGroup("", &groups.ArticleGroup{})
+		grp.AddGroup("/user-affiliation", &groups.UserAffiliationGroup{})
 	})
 }

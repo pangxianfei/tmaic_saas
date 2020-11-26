@@ -4,7 +4,7 @@
 
 软件简介
 
-tmaic-go 是一套简洁、优雅的PHP Web开发框架(GoLang Web Framework)。它可以让你从面条一样杂乱的代码中解脱出来；它可以帮你构建一个完美的网络应用，而且每行代码都可以简洁、富于表达力。 
+tmaic-go 是一套简洁、GoLang API Web开发框架(GoLang API Web Framework)。它可以让你从面条一样杂乱的代码中解脱出来；它可以帮你构建一个完美的网络应用，而且每行代码都可以简洁、富于表达力。 
 ## Docs
 https://tmaic.com
 ## Thanks

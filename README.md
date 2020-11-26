@@ -36,6 +36,6 @@ This project is licensed under the [MIT license](https://github.com/pangxianfei/
 3.  提交代码
 4.  新建 Pull Request
 
-* https://github.com/pangxianfei/framework/issues  
+* https://gitee.com/pangxianfei/tmaic-go/issues
 * Slack: https://tmaic.com
 * pangxianfei@icloud.com

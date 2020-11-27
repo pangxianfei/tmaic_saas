@@ -26,22 +26,12 @@ func init() {
 	bootstrap.Initialize()
 }
 
-// @caution cannot use config methods to get config in init function
 func main() {
-	//j := &jobs.ExampleJob{}
-	//j.SetParam(&pbs.ExampleJob{Query: "test", PageNumber: 111, ResultPerPage: 222})
-	////j.SetDelay(5 * zone.Second)
-	//err := job.Dispatch(j)
-	//fmt.Println(err)
-
-	//go hub.On("add-user-affiliation")  // go run artisan.go queue:listen add-user-affiliation
 
 	ctx, cancel := context.WithCancel(context.Background())
 
 	quit := make(chan os.Signal, 1)
-	// kill (no param) default send syscanll.SIGTERM
-	// kill -2 is syscall.SIGINT
-	// kill -9 is syscall. SIGKILL but can"t be catch, so don't need add it
+
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
 
 	go func() {
@@ -58,7 +48,6 @@ func main() {
 
 	wg.Wait()
 
-	// tmaic framework shutdown
 	graceful.ShutDown(false)
 
 	log.Info("Server exited")
@@ -70,8 +59,6 @@ func httpServe(parentCtx context.Context, wg *sync.WaitGroup) {
 	sentry.Use(r.GinEngine(), false)
 
 	bootstrap.Middleware(r)
-
-	//r.Use(middleware.IUser(&models.YourUserModel{})) // set default auth user model, or use config auth.model_ptr
 
 	routes.Register(r)
 
@@ -96,8 +83,6 @@ func httpServe(parentCtx context.Context, wg *sync.WaitGroup) {
 
 	log.Info("Shutdown Server ...")
 
-	// Wait for interrupt signal to gracefully shutdown the server with
-	// a timeout of 5 seconds.
 	ctx, cancel := context.WithTimeout(parentCtx, 5*zone.Second)
 	defer cancel()
 

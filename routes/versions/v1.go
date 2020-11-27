@@ -7,7 +7,7 @@ import (
 	"tmaic/routes/groups"
 )
 
-func NewV1(engine *request.Engine) {
+func V1Api(engine *request.Engine) {
 	ver := route.NewVersion(engine, "v1")
 
 	// auth routes
@@ -19,6 +19,5 @@ func NewV1(engine *request.Engine) {
 	ver.NoAuth("", func(grp route.Grouper) {
 		grp.AddGroup("", &groups.AuthGroup{})
 		grp.AddGroup("", &groups.ArticleGroup{})
-		grp.AddGroup("/user-affiliation", &groups.UserAffiliationGroup{})
 	})
 }

@@ -9,5 +9,5 @@ import (
 func Register(router *request.Engine) {
 	defer route.Bind(router)
 
-	versions.NewV1(router)
+	versions.V1Api(router)
 }

@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 
 	"github.com/pangxianfei/framework/database/migration"
 	"github.com/pangxianfei/framework/helpers/zone"
@@ -33,11 +33,13 @@ type CreateUserTable1548750742 struct {
 }
 
 func (*CreateUserTable1548750742) Up(db *gorm.DB) *gorm.DB {
-	db = db.CreateTable(&User{})
+	db.Migrator().CreateTable(&User{})
 	return db
 }
 
 func (*CreateUserTable1548750742) Down(db *gorm.DB) *gorm.DB {
-	db = db.DropTableIfExists(&User{})
+
+	db.Migrator().DropTable(&User{})
+
 	return db
 }

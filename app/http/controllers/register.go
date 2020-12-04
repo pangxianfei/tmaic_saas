@@ -3,21 +3,18 @@ package controllers
 import (
 	"errors"
 	"net/http"
+	"strconv"
+	"tmaic/app/http/requests"
+	"tmaic/app/models"
 
-	"github.com/pangxianfei/framework/helpers/log"
-	"github.com/pangxianfei/framework/helpers/toto"
-	"github.com/pangxianfei/framework/request"
-
-	"github.com/pangxianfei/framework/config"
+	tmaic "github.com/pangxianfei/framework"
 	"github.com/pangxianfei/framework/helpers"
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/http/controller"
 	"github.com/pangxianfei/framework/model/helper"
+	"github.com/pangxianfei/framework/request"
 	"github.com/pangxianfei/framework/utils/crypt"
 	"github.com/pangxianfei/framework/utils/jwt"
-
-	"tmaic/app/http/requests"
-	"tmaic/app/models"
 )
 
 type Register struct {
@@ -35,7 +32,7 @@ func (r *Register) Register(c request.Context) {
 		if err := recover(); err != nil {
 			responseErr, ok := err.(error)
 			if ok {
-				c.JSON(http.StatusUnprocessableEntity, toto.V{"error": responseErr.Error()})
+				c.JSON(http.StatusUnprocessableEntity, tmaic.V{"error": responseErr.Error()})
 				return
 			}
 			panic(err)
@@ -47,13 +44,12 @@ func (r *Register) Register(c request.Context) {
 	m.Transaction(func(TransactionHelper *helper.Helper) {
 
 		user := models.User{
-			Name: &requestData.Email,
+			Name:  &requestData.Email,
 			Email: &requestData.Email,
 		}
 		if TransactionHelper.Exist(&user, true) {
 			panic(errors.New(helpers.L(c, "auth.register.failed_existed")))
 		}
-
 
 		encryptedPassword := crypt.Bcrypt(requestData.Password)
 		user.Password = &encryptedPassword
@@ -62,22 +58,35 @@ func (r *Register) Register(c request.Context) {
 		}
 
 		// create token
-		newJwt := jwt.NewJWT(config.GetString("auth.sign_key"))
+		newJwt := jwt.NewJWT()
 		username := ""
 		if user.Name != nil {
 			username = *user.Name
 		}
 		var err error
-		token, err = newJwt.CreateToken(string(*user.ID), username)
+		token, err = newJwt.CreateToken(strconv.Itoa(int(*user.ID)), username)
 		if err != nil {
 			panic(helpers.L(c, "auth.register.failed_token_generate_error"))
 		}
 
 		userId = *user.ID
 	}, 1)
+	/*
+		// emit user-registered event
+		ur := events.UserRegistered{}
+		param := &pbs.UserRegistered{
+			UserId:              uint32(userId),
+			AffiliationFromCode: "",
+		}
+		if requestData.AffiliationFromCode != nil {
+			param.AffiliationFromCode = *requestData.AffiliationFromCode
+		}
+		ur.SetParam(param)
+		if errs := hub.Emit(&ur); errs != nil {
+			log.Info("user registered event emit failed", tmaic.V{"event": ur, "errors": errs})
+		}
+	*/
 
-
-	log.Info("user registered event emit failed", toto.V{"token": token})
-	c.JSON(http.StatusOK, toto.V{"token": token})
+	c.JSON(http.StatusOK, tmaic.V{"token": token})
 	return
 }

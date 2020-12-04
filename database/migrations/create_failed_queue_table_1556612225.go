@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 
 	"github.com/pangxianfei/framework/database/migration"
 	"github.com/pangxianfei/framework/helpers/zone"
@@ -23,7 +23,7 @@ type FailedQueue struct {
 	Delay     *zone.Duration `gorm:"column:failed_queue_delay;type:bigint unsigned;not null"`
 	Retries   *uint32        `gorm:"column:failed_queue_retries;type:integer unsigned;not null"`
 	Tried     *uint32        `gorm:"column:failed_queue_tried;type:integer unsigned;not null"`
-	Err       *string        `gorm:"column:failed_queue_err;size:65535"`
+	Err       *string        `gorm:"column:failed_queue_err;type:longtext"`
 
 	CreatedAt *zone.Time `gorm:"column:failed_queue_created_at"`
 	UpdatedAt zone.Time  `gorm:"column:failed_queue_updated_at"`
@@ -41,11 +41,11 @@ type CreateFailedQueueTable1556612225 struct {
 }
 
 func (*CreateFailedQueueTable1556612225) Up(db *gorm.DB) *gorm.DB {
-	db = db.CreateTable(&FailedQueue{})
+	db.Migrator().CreateTable(&FailedQueue{})
 	return db
 }
 
 func (*CreateFailedQueueTable1556612225) Down(db *gorm.DB) *gorm.DB {
-	db = db.DropTableIfExists(&FailedQueue{})
+	db.Migrator().DropTable(&FailedQueue{})
 	return db
 }

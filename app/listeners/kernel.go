@@ -3,6 +3,6 @@ package listeners
 import "github.com/pangxianfei/framework/hub"
 
 func Initialize() {
-	// initialize topic and channel
+	// 初始化主题和频道
 	hub.RegisterQueue()
 }

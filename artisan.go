@@ -1,19 +1,19 @@
 package main
 
 import (
-	"os"
-	"github.com/pangxianfei/framework/graceful"
-	"github.com/pangxianfei/framework/helpers/log"
-	"github.com/pangxianfei/framework/sentry"
-	"tmaic/bootstrap"
-	"github.com/urfave/cli"
-	"github.com/pangxianfei/framework/console"
-	"tmaic/database/migrations"
 	"github.com/pangxianfei/framework/cmd"
 	command_queue "github.com/pangxianfei/framework/cmd/commands/queue"
 	"github.com/pangxianfei/framework/cmd/commands/schedule"
+	"github.com/pangxianfei/framework/console"
+	"github.com/pangxianfei/framework/graceful"
+	"github.com/pangxianfei/framework/helpers/log"
+	"github.com/pangxianfei/framework/sentry"
+	"github.com/urfave/cli"
+	"os"
 	app_schedule "tmaic/app/console"
 	"tmaic/app/console/commands"
+	"tmaic/bootstrap"
+	"tmaic/database/migrations"
 )
 
 func init() {

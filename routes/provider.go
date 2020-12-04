@@ -10,4 +10,5 @@ func Register(router *request.Engine) {
 	defer route.Bind(router)
 
 	versions.V1Api(router)
+	versions.WebRoute(router)
 }

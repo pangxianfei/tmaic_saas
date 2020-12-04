@@ -3,9 +3,8 @@ package models
 import (
 	"errors"
 	"fmt"
+	"gorm.io/gorm"
 	"math"
-
-	"github.com/jinzhu/gorm"
 
 	"github.com/pangxianfei/framework/helpers/ptr"
 	"github.com/pangxianfei/framework/helpers/zone"
@@ -158,15 +157,12 @@ func (uaff *UserAffiliation) CountByParent(parentID uint) (uint, error) {
 	return (*parent.Right - 1 - *parent.Left) / 2, nil
 }
 
-
 type Tree struct {
 	ID       uint   `json:"id"`
 	Name     string `json:"name"`
 	Value    string `json:"value"`
 	Children []Tree `json:"children"`
 }
-
-
 
 func (t *Tree) recursiveCombineTree(current Tree, level uint, nodes []UserAffiliation) []Tree {
 	for _, uaff := range nodes {
@@ -194,5 +190,3 @@ func (t *Tree) recursiveCombineTree(current Tree, level uint, nodes []UserAffili
 
 	return current.Children
 }
-
-

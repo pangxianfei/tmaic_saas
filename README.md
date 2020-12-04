@@ -1,54 +1,40 @@
+# tmaic_erp
+
+#### 介绍
+{**以下是 Gitee 平台说明，您可以替换此简介**
+Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
+无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
+
+#### 软件架构
+软件架构说明
 
 
-## 关于 Tmaic-go 框架
+#生成公钥文件
+tmaic.CreateRsaKey()
+### 系统函数
+#加密解密函数
+#公钥加密
+s,_:= tmaic.Encryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
+#私钥解密
+dd,_ := tmaic.Decrypt(s)
+#私钥加密
+s,_:= tmaic.PrivateEncryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
+公钥解密<br>
+dd,_ := tmaic.PublicDecrypt(s)
 
-软件简介
 
-tmaic-go 是一套简洁、GoLang API Web开发框架(GoLang API Web Framework)。它可以让你从面条一样杂乱的代码中解脱出来；它可以帮你构建一个完美的网络应用，而且每行代码都可以简洁、富于表达力。 
-## Docs
-#https://tmaic.com
-#生成表
 
-	db := l.DB()
-	
-	article := models.Article{}
+#### 安装教程
 
-	db.Migrator().CreateTable(&article)
+1.  xxxx
+2.  xxxx
+3.  xxxx
 
-#添加数据（记录）
+#### 使用说明
 
-	db := l.DB()
-	
-	article := models.Article{Title: "这是标题",Body: "这是内容",Slug: 12345}
-
-	db.Create(&article) // 通过数据的指针来创建
-	
-	操作方法见：https://gorm.io/zh_CN/docs/create.html
-	
-	
-	
-	
-## Thanks
-* gin
-* gorm
-* validator.v9
-* viper
-* big
-* jwt
-* i18n
-* urfave/cli
-* fatih/color
-* golang/protobuf
-* nsqio/go-nsq
-* robfig/cron
-* ztrue/tracerr
-* go-redis/redis
-* getsentry/raven-go
-* iancoleman/strcase
-* gorilla/websocket
-
-## License
-This project is licensed under the [MIT license](https://github.com/pangxianfei/framework/blob/main/LICENSE).
+1.  xxxx
+2.  xxxx
+3.  xxxx
 
 #### 参与贡献
 
@@ -57,5 +43,12 @@ This project is licensed under the [MIT license](https://github.com/pangxianfei/
 3.  提交代码
 4.  新建 Pull Request
 
-* https://gitee.com/pangxianfei/tmaic-go/issues
-* pangxianfei@icloud.com
+
+#### 特技
+
+1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
+2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
+3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
+4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
+5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
+6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

@@ -3,6 +3,7 @@ package middleware
 import (
 	"github.com/pangxianfei/framework/helpers/log"
 	"github.com/pangxianfei/framework/helpers/zone"
+	"github.com/pangxianfei/framework/request"
 )
 
 func Example() request.HandlerFunc {
@@ -18,10 +19,10 @@ func Example() request.HandlerFunc {
 
 		// after request
 		latency := zone.Since(t)
-		log.Info("latency", toto.V{"latency": latency})
+		log.Info("latency", tmaic.V{"latency": latency})
 
 		// access the status we are sending
 		status := c.Writer.Status()
-		log.Info("status", toto.V{"status": status})
+		log.Info("status", tmaic.V{"status": status})
 	}
 }

@@ -5,13 +5,14 @@ import (
 	"net/http"
 	"os"
 	"os/signal"
+	"runtime"
 	"sync"
 	"syscall"
 
+	tmaic "github.com/pangxianfei/framework"
 	c "github.com/pangxianfei/framework/config"
 	"github.com/pangxianfei/framework/graceful"
 	"github.com/pangxianfei/framework/helpers/log"
-	"github.com/pangxianfei/framework/helpers/toto"
 	"github.com/pangxianfei/framework/helpers/zone"
 	"github.com/pangxianfei/framework/monitor"
 	"github.com/pangxianfei/framework/request"
@@ -27,7 +28,7 @@ func init() {
 }
 
 func main() {
-
+	runtime.GOMAXPROCS(runtime.NumCPU())
 	ctx, cancel := context.WithCancel(context.Background())
 
 	quit := make(chan os.Signal, 1)
@@ -36,7 +37,7 @@ func main() {
 
 	go func() {
 		call := <-quit
-		log.Info("system call", toto.V{"call": call})
+		log.Info("system call", tmaic.V{"call": call})
 		cancel()
 	}()
 
@@ -73,7 +74,7 @@ func httpServe(parentCtx context.Context, wg *sync.WaitGroup) {
 	}
 
 	go func() {
-		log.Info("Served At", toto.V{"Addr": s.Addr})
+		log.Info("Served At", tmaic.V{"Addr": s.Addr})
 		if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal(err.Error())
 		}
@@ -87,7 +88,7 @@ func httpServe(parentCtx context.Context, wg *sync.WaitGroup) {
 	defer cancel()
 
 	if err := s.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown: ", toto.V{"error": err})
+		log.Fatal("Server Shutdown: ", tmaic.V{"error": err})
 	}
 
 	wg.Done()

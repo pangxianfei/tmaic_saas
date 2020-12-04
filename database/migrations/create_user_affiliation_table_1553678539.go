@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 
 	"github.com/pangxianfei/framework/database/migration"
 	"github.com/pangxianfei/framework/helpers/zone"
@@ -37,11 +37,11 @@ type CreateUserAffiliationTable1553678539 struct {
 }
 
 func (*CreateUserAffiliationTable1553678539) Up(db *gorm.DB) *gorm.DB {
-	db = db.CreateTable(&UserAffiliation{})
+	db.Migrator().CreateTable(&UserAffiliation{})
 	return db
 }
 
 func (*CreateUserAffiliationTable1553678539) Down(db *gorm.DB) *gorm.DB {
-	db = db.DropTableIfExists(&UserAffiliation{})
+	db.Migrator().DropTable(&UserAffiliation{})
 	return db
 }

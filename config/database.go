@@ -21,15 +21,20 @@ func init() {
 			"prefix":    Env("DB_PREFIX", ""),
 		},
 	}
+
 	database["mssql"] = map[string]interface{}{
+
 		"driver":    "mssql",
 		"host":      Env("DB_HOST", "127.0.0.1"),
-		"port":      Env("DB_PORT", "1433"),
+		"port":      Env("DB_PORT", "3306"),
 		"database":  Env("DB_DATABASE", ""),
 		"username":  Env("DB_USERNAME", ""),
 		"password":  Env("DB_PASSWORD", ""),
+		"charset":   "utf8mb4",
+		"collation": "utf8mb4_unicode_ci",
 		"prefix":    Env("DB_PREFIX", ""),
 	}
+
 	database["migrations"] = "migrations"
 	database["max_idle_connections"] = Env("DB_MAX_IDLE_CONNECTIONS", 2) // 2 is the cpu cores
 	database["max_open_connections"] = Env("DB_MAX_OPEN_CONNECTIONS", 0) // 2 is the cpu cores

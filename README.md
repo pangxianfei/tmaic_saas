@@ -22,13 +22,26 @@ s,_:= tmaic.PrivateEncryption(string("Golang使用RSA进行公钥加密私钥解
 公钥解密<br>
 dd,_ := tmaic.PublicDecrypt(s)
 
+#注意事项：如果要使用 NSQ 队列的，不用将包注释
+导入包：
+"github.com/pangxianfei/framework/queue"
+"tmaic/app/events"
+"tmaic/app/jobs"
+"tmaic/app/listeners"
 
+以下去掉注释即可：
+//queue.Initialize()
+//jobs.Initialize()
+//events.Initialize()
+//listeners.Initialize()
+
+#NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  git clone git@gitee.com:pangxianfei/tmaic-go.git
+2.  执行 go run main.go 自动安装
+3.  默认端口为 81，配置文件可自行更改
 
 #### 使用说明
 

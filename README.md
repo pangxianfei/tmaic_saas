@@ -31,8 +31,11 @@ dd,_ := tmaic.PublicDecrypt(s)
 
 导入包：
 "github.com/pangxianfei/framework/queue"
+
 "tmaic/app/events"
+
 "tmaic/app/jobs"
+
 "tmaic/app/listeners"
 
 以下去掉注释即可：

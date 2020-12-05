@@ -9,20 +9,26 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 软件架构说明
 
 
-#生成公钥文件
+# 生成公钥文件
+
 tmaic.CreateRsaKey()
 ### 系统函数
-#加密解密函数
-#公钥加密
+# 加密解密函数
+# 公钥加密
+
 s,_:= tmaic.Encryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
-#私钥解密
+
+# 私钥解密
 dd,_ := tmaic.Decrypt(s)
-#私钥加密
+
+# 私钥加密
 s,_:= tmaic.PrivateEncryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
-公钥解密<br>
+
+公钥解密
 dd,_ := tmaic.PublicDecrypt(s)
 
-#注意事项：如果要使用 NSQ 队列的，不用将包注释
+# 注意事项：如果要使用 NSQ 队列的，不用将包注释
+
 导入包：
 "github.com/pangxianfei/framework/queue"
 "tmaic/app/events"
@@ -30,12 +36,13 @@ dd,_ := tmaic.PublicDecrypt(s)
 "tmaic/app/listeners"
 
 以下去掉注释即可：
+
 //queue.Initialize()
 //jobs.Initialize()
 //events.Initialize()
 //listeners.Initialize()
 
-#NSQ安装请参考：https://nsq.io/overview/quick_start.html
+# NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
 #### 安装教程
 

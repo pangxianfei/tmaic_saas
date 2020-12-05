@@ -23,7 +23,7 @@ dd,_ := tmaic.Decrypt(s)
 # 私钥加密
 s,_:= tmaic.PrivateEncryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
 
-公钥解密
+# 公钥解密
 dd,_ := tmaic.PublicDecrypt(s)
 
 # 注意事项：如果要使用 NSQ 队列的，不用将包注释

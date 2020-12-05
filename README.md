@@ -25,7 +25,8 @@ dd,_ := tmaic.PublicDecrypt(s)
 
 # 注意事项：如果要使用 NSQ 队列的，不用将包注释
 
-导入包：
+### 导入包：
+
 "github.com/pangxianfei/framework/queue"
 
 "tmaic/app/events"
@@ -34,7 +35,7 @@ dd,_ := tmaic.PublicDecrypt(s)
 
 "tmaic/app/listeners"
 
-以下去掉注释即可：
+### 以下去掉注释即可：
 
 //queue.Initialize()
 

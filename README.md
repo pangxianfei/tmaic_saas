@@ -1,29 +1,29 @@
 # tmaic_erp
 
-#### 介绍
+# 介绍
 {**以下是 Gitee 平台说明，您可以替换此简介**
 Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN）。专为开发者提供稳定、高效、安全的云端软件开发协作平台
 无论是个人、团队、或是企业，都能够用 Gitee 实现代码托管、项目管理、协作开发。企业项目请看 [https://gitee.com/enterprises](https://gitee.com/enterprises)}
 
-#### 软件架构
+# 软件架构
 软件架构说明
 
 # 生成公钥文件
 
 tmaic.CreateRsaKey()
-### 系统函数
-# 加密解密函数
-# 公钥加密
+# 系统函数
+### 加密解密函数
+### 公钥加密
 
 s,_:= tmaic.Encryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
 
-# 私钥解密
+### 私钥解密
 dd,_ := tmaic.Decrypt(s)
 
-# 私钥加密
+### 私钥加密
 s,_:= tmaic.PrivateEncryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
 
-# 公钥解密
+### 公钥解密
 dd,_ := tmaic.PublicDecrypt(s)
 
 # 注意事项：如果要使用 NSQ 队列的，不用将包注释

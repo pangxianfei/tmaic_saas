@@ -23,7 +23,7 @@ func (this *UserAffiliation) Index(c request.Context) {
 
 	this.TplName = "nodes"
 
-	this.Data = tmaic.Output{"Content": "duzhenxun2", "color": "red"}
+	this.Data = tmaic.Output{"Content": "duzhenxun2", "color": "red", "blue": nil}
 
 	this.View(c)
 	//以下方法一样可以调用模板渲染

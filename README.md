@@ -8,48 +8,74 @@ Gitee 是 OSCHINA 推出的基于 Git 的代码托管平台（同时支持 SVN�
 #### 软件架构
 软件架构说明
 
+# 生成公钥文件
 
-#生成公钥文件
 tmaic.CreateRsaKey()
 ### 系统函数
-#加密解密函数
-#公钥加密
+# 加密解密函数
+# 公钥加密
+
 s,_:= tmaic.Encryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
-#私钥解密
+
+# 私钥解密
 dd,_ := tmaic.Decrypt(s)
-#私钥加密
+
+# 私钥加密
 s,_:= tmaic.PrivateEncryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
-公钥解密<br>
+
+公钥解密
 dd,_ := tmaic.PublicDecrypt(s)
 
-#注意事项：如果要使用 NSQ 队列的，不用将包注释
+# 注意事项：如果要使用 NSQ 队列的，不用将包注释
+
 导入包：
 "github.com/pangxianfei/framework/queue"
+
 "tmaic/app/events"
+
 "tmaic/app/jobs"
+
 "tmaic/app/listeners"
 
 以下去掉注释即可：
+
 //queue.Initialize()
+
 //jobs.Initialize()
+
 //events.Initialize()
+
 //listeners.Initialize()
 
-#NSQ安装请参考：https://nsq.io/overview/quick_start.html
+# NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
-#### 安装教程
+
+# 性能测试
+
+### 虚拟机环境下：
+![avatar](/docs/img/centos.png)
+
+### 压力测试
+ab -c 1000 -n 5000  -k http://127.0.0.1/all
+
+![avatar](/docs/img/cpu1.jpg)
+
+
+
+
+# 安装教程
 
 1.  git clone git@gitee.com:pangxianfei/tmaic-go.git
 2.  执行 go run main.go 自动安装
 3.  默认端口为 81，配置文件可自行更改
 
-#### 使用说明
+# 使用说明
 
 1.  xxxx
 2.  xxxx
 3.  xxxx
 
-#### 参与贡献
+# 参与贡献
 
 1.  Fork 本仓库
 2.  新建 Feat_xxx 分支

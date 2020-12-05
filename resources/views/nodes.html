@@ -4,10 +4,26 @@
 <html lang="en">
 <head>
    <meta charset="UTF-8">
-   <title></title>
+   <link rel="shortcut icon" href="#" />
+   <title>测试</title>
 </head>
 <body>
 {{.Content}}
+<br>
+
+
+{{if .blue }}
+
+<a>{{.blue}}</a>
+
+{{else}}
+
+blue没有定义或者为空
+
+{{end}}
+
+
+
 </body>
 </html>
 

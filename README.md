@@ -14,8 +14,18 @@ tmaic 是一套简洁、优雅的Golang Web开发框架(GoLang Web Framework)。
 
 参与方式：简单的东西直接提交PR,如果想法比较多，需要改动大段代码，你也可以直接加我 qq：421339244 ，直接添加至开发组，共同商讨开发的功能，约定规范，提交代码。
 
-# 数据模型  以下是例子
+# 数据模型  
+### 以下是例子
 ```golang
+
+package models
+
+import (
+	"github.com/pangxianfei/framework/helpers/m"
+	"github.com/pangxianfei/framework/helpers/ptr"
+	"github.com/pangxianfei/framework/helpers/zone"
+	"github.com/pangxianfei/framework/model"
+)
 type User struct {
     model.BaseModel
     ID        *uint      `gorm:"column:user_id;primary_key;auto_increment"`

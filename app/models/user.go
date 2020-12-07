@@ -8,6 +8,7 @@ import (
 )
 
 type User struct {
+	model.BaseModel
 	ID        *uint      `gorm:"column:user_id;primary_key;auto_increment"`
 	Name      *string    `gorm:"column:user_name;type:varchar(100)"`
 	Email     *string    `gorm:"column:user_email;type:varchar(100);unique_index;not null"`
@@ -15,7 +16,6 @@ type User struct {
 	CreatedAt *zone.Time `gorm:"column:user_created_at"`
 	UpdatedAt zone.Time  `gorm:"column:user_updated_at"`
 	DeletedAt *zone.Time `gorm:"column:user_deleted_at"`
-	model.BaseModel
 }
 
 func (user *User) TableName() string {

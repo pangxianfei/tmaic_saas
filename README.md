@@ -38,7 +38,8 @@ func (user *User) SetNameAttribute(value interface{}) {
 func (user *User) GetUpdatedAtAttribute(value interface{}) interface{} {
     return user.UpdatedAt //查询后这里可以其他处理，如格式化处理，如果是时间time 可以格式成 2020-10-01 18：00：20
 }
-```golang
+```
+
 # 生成公钥文件
 
 tmaic.CreateRsaKey()

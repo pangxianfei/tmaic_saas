@@ -71,7 +71,7 @@ func httpServe(parentCtx context.Context, wg *sync.WaitGroup) {
 	}
 
 	go func() {
-		log.Info("Served At", tmaic.V{"Addr": s.Addr})
+		//log.Info("Served At", tmaic.V{"Addr": s.Addr})
 		if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal(err.Error())
 		}

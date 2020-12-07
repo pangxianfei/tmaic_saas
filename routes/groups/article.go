@@ -10,7 +10,7 @@ type ArticleGroup struct {
 }
 
 func (Ar *ArticleGroup) Group(group route.Grouper) {
-	 
-	group.GET("/index", Ar.ArticleController.Index)
- 
+
+	group.GET("/article.list", Ar.ArticleController.Index).Name("Article.list")
+
 }

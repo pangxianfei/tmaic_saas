@@ -15,7 +15,7 @@ tmaic 是一套简洁、优雅的Golang Web开发框架(GoLang Web Framework)。
 参与方式：简单的东西直接提交PR,如果想法比较多，需要改动大段代码，你也可以直接加我 qq：421339244 ，直接添加至开发组，共同商讨开发的功能，约定规范，提交代码。
 
 # 数据模型  以下是例子
-
+```golang
 type User struct {
     model.BaseModel
     ID        *uint      `gorm:"column:user_id;primary_key;auto_increment"`
@@ -38,7 +38,7 @@ func (user *User) SetNameAttribute(value interface{}) {
 func (user *User) GetUpdatedAtAttribute(value interface{}) interface{} {
     return user.UpdatedAt //查询后这里可以其他处理，如格式化处理，如果是时间time 可以格式成 2020-10-01 18：00：20
 }
-
+```golang
 # 生成公钥文件
 
 tmaic.CreateRsaKey()

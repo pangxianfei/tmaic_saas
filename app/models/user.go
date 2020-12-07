@@ -21,11 +21,9 @@ type User struct {
 func (user *User) TableName() string {
 	return user.SetTableName("user")
 }
-
 func (user *User) Default() interface{} {
 	return User{}
 }
-
 func (user *User) Scan(userId uint) error {
 	newUser := User{
 		ID: ptr.Uint(userId),
@@ -48,9 +46,6 @@ func (user *User) SetNameAttribute(value interface{}) {
 	user.Name = user.Email
 }
 
-/*
 func (user *User) GetPasswordAttribute(value interface{}) interface{} {
-
 	return value
 }
-*/

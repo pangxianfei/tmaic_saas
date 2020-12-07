@@ -1,8 +1,7 @@
 package controllers
 
 import (
-	tmaic "github.com/pangxianfei/framework"
-	"github.com/pangxianfei/framework/helpers/log"
+	"github.com/pangxianfei/framework"
 	"github.com/pangxianfei/framework/http/controller"
 	"github.com/pangxianfei/framework/request"
 )
@@ -11,22 +10,12 @@ type UserAffiliation struct {
 	controller.BaseController
 }
 
-//var template = new(view.Template) interface{}
-
-func init() {
-
-	log.Debug("UserAffiliation")
-
-}
-
 func (this *UserAffiliation) Index(c request.Context) {
 
-	this.TplName = "nodes"
-
-	this.Data = tmaic.Output{"Content": "duzhenxun2", "color": "red"}
-
+	this.TplName = "index"
+	this.Data = tmaic.Output{"Content": "duzhenxun2", "colors": "colors", "red": "red"}
+	//article := models.Article{}
+	//result := db.First(&article)
+	//c.HTML(http.StatusOK, this.TplName, result) gin 原生写法
 	this.View(c)
-	//以下方法一样可以调用模板渲染
-	//c.View("nodes",tmaic.V{"Content": "pangxianfei",})
-
 }

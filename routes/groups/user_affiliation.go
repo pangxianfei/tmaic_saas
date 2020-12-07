@@ -6,7 +6,7 @@ import (
 )
 
 type UserAffiliationGroup struct {
-	UserAff controllers.UserAffiliation
+	UserAff controllers.Affiliation
 }
 
 func (uaffg *UserAffiliationGroup) Group(group route.Grouper) {

@@ -28,9 +28,8 @@ func WebRoute(engine *request.Engine) {
 
 	//engine.LoadHTMLGlob("./resources/views/**/*")
 	//处理静态资源（不建议gin框架处理静态资源，参见 public/readme.md 说明 ）
-	engine.Static("/public", "./public")          //  定义静态资源路由与实际目录映射关系
-	engine.StaticFS("/dir", http.Dir("./public")) // 将public目录内的文件列举展示
-
+	engine.Static("/public", "./public")
+	engine.StaticFS("/dir", http.Dir("./public"))
 	engine.HTMLRender = gintemplate.New(gintemplate.TemplateConfig{
 		Root:      "./resources/views",
 		Extension: ".html",

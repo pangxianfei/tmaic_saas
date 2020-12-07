@@ -2,6 +2,14 @@ package main
 
 import (
 	"context"
+
+	"github.com/pangxianfei/framework"
+	c "github.com/pangxianfei/framework/config"
+	"github.com/pangxianfei/framework/graceful"
+	"github.com/pangxianfei/framework/helpers/log"
+	"github.com/pangxianfei/framework/helpers/zone"
+	"github.com/pangxianfei/framework/request"
+	"github.com/pangxianfei/framework/sentry"
 	"net/http"
 	"os"
 	"os/signal"
@@ -9,20 +17,14 @@ import (
 	"sync"
 	"syscall"
 
-	tmaic "github.com/pangxianfei/framework"
-	c "github.com/pangxianfei/framework/config"
-	"github.com/pangxianfei/framework/graceful"
-	"github.com/pangxianfei/framework/helpers/log"
-	"github.com/pangxianfei/framework/helpers/zone"
-	"github.com/pangxianfei/framework/request"
-	"github.com/pangxianfei/framework/sentry"
-
 	"tmaic/bootstrap"
 	"tmaic/routes"
 )
 
 func init() {
+
 	bootstrap.Initialize()
+
 }
 
 func main() {

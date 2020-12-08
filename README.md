@@ -107,9 +107,11 @@ ab -c 1000 -n 5000  -k http://127.0.0.1/all
 
 # 安装教程
 
-1.  git clone git@gitee.com:pangxianfei/tmaic-go.git
-2.  执行 go run main.go 自动安装
-3.  默认端口为 81，配置文件可自行更改
+1.    git clone git@gitee.com:pangxianfei/tmaic.git
+2.    go mod init // 初始化go mod 包管理
+3.    go mod tidy // 加载依赖包
+4.    go mod vendor // 将依赖包拷贝到项目目录中去
+5.    go run main.go
 
 # 使用说明
 

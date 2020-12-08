@@ -14,11 +14,11 @@ type HelloWorld struct {
 }
 
 func (hw *HelloWorld) Command() string {
-	return "say:hello-world {hi}"
+	return "Demo {hi}"
 }
 
 func (hw *HelloWorld) Description() string {
-	return "Say Hello"
+	return "Demo"
 }
 
 func (hw *HelloWorld) Handler(arg *cmd.Arg) error {

@@ -1,6 +1,10 @@
 .idea
+.gitee
+.git
 framework
 .env.json
 go.sum
 /.DS_Store
 /.gitee
+vendor
+go.mod

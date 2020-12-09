@@ -33,13 +33,13 @@ type CreateUserTable1548750742 struct {
 }
 
 func (*CreateUserTable1548750742) Up(db *gorm.DB) *gorm.DB {
-	db.Migrator().CreateTable(&User{})
+	_ = db.Migrator().CreateTable(&User{})
 	return db
 }
 
 func (*CreateUserTable1548750742) Down(db *gorm.DB) *gorm.DB {
 
-	db.Migrator().DropTable(&User{})
+	_ = db.Migrator().DropTable(&User{})
 
 	return db
 }

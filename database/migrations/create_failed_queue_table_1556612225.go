@@ -41,11 +41,11 @@ type CreateFailedQueueTable1556612225 struct {
 }
 
 func (*CreateFailedQueueTable1556612225) Up(db *gorm.DB) *gorm.DB {
-	db.Migrator().CreateTable(&FailedQueue{})
+	_ = db.Migrator().CreateTable(&FailedQueue{})
 	return db
 }
 
 func (*CreateFailedQueueTable1556612225) Down(db *gorm.DB) *gorm.DB {
-	db.Migrator().DropTable(&FailedQueue{})
+	_ = db.Migrator().DropTable(&FailedQueue{})
 	return db
 }

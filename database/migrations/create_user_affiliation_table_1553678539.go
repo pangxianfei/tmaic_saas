@@ -37,11 +37,11 @@ type CreateUserAffiliationTable1553678539 struct {
 }
 
 func (*CreateUserAffiliationTable1553678539) Up(db *gorm.DB) *gorm.DB {
-	db.Migrator().CreateTable(&UserAffiliation{})
+	_ = db.Migrator().CreateTable(&UserAffiliation{})
 	return db
 }
 
 func (*CreateUserAffiliationTable1553678539) Down(db *gorm.DB) *gorm.DB {
-	db.Migrator().DropTable(&UserAffiliation{})
+	_ = db.Migrator().DropTable(&UserAffiliation{})
 	return db
 }

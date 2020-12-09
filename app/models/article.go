@@ -6,6 +6,7 @@ import (
 )
 
 type Article struct {
+	model.BaseModel
 	ID        uint       `gorm:"column:id;primary_key;auto_increment"`
 	Title     string     `gorm:"column:title;type:varchar(100)"`
 	Body      string     `gorm:"column:body;type:varchar(100);unique_index;not null"`
@@ -13,7 +14,6 @@ type Article struct {
 	CreatedAt zone.Time  `gorm:"column:created_at"`
 	UpdatedAt zone.Time  `gorm:"column:updated_at"`
 	DeletedAt *zone.Time `gorm:"column:deleted_at"`
-	model.BaseModel
 }
 
 func (Article *Article) TableName() string {

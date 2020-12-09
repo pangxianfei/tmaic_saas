@@ -2,7 +2,6 @@ package lang
 
 import (
 	"github.com/pangxianfei/framework/helpers/locale"
-
 	"github.com/pangxianfei/framework/resources/lang"
 )
 

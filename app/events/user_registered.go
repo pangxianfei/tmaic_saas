@@ -2,7 +2,6 @@ package events
 
 import (
 	"github.com/golang/protobuf/proto"
-
 	"github.com/pangxianfei/framework/hub"
 	pbs "tmaic/app/events/protocol_buffers"
 )

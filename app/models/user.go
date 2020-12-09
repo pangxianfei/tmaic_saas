@@ -2,18 +2,17 @@ package models
 
 import (
 	"github.com/pangxianfei/framework/helpers/m"
-	"github.com/pangxianfei/framework/helpers/ptr"
 	"github.com/pangxianfei/framework/helpers/zone"
 	"github.com/pangxianfei/framework/model"
 )
 
 type User struct {
 	model.BaseModel
-	ID        *uint      `gorm:"column:user_id;primary_key;auto_increment"`
-	Name      *string    `gorm:"column:user_name;type:varchar(100)"`
-	Email     *string    `gorm:"column:user_email;type:varchar(100);unique_index;not null"`
-	Password  *string    `gorm:"column:user_password;type:varchar(100);not null"`
-	CreatedAt *zone.Time `gorm:"column:user_created_at"`
+	ID        int64      `gorm:"column:user_id;primary_key;auto_increment"`
+	Name      string     `gorm:"column:user_name;type:varchar(100)"`
+	Email     string     `gorm:"column:user_email;type:varchar(100);unique_index;not null"`
+	Password  string     `gorm:"column:user_password;type:varchar(100);not null"`
+	CreatedAt zone.Time  `gorm:"column:user_created_at"`
 	UpdatedAt zone.Time  `gorm:"column:user_updated_at"`
 	DeletedAt *zone.Time `gorm:"column:user_deleted_at"`
 }
@@ -24,9 +23,9 @@ func (user *User) TableName() string {
 func (user *User) Default() interface{} {
 	return User{}
 }
-func (user *User) Scan(userId uint) error {
+func (user *User) Scan(userId int64) error {
 	newUser := User{
-		ID: ptr.Uint(userId),
+		ID: userId,
 	}
 	if err := m.H().First(&newUser, false); err != nil {
 		return err

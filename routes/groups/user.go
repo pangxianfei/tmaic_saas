@@ -11,9 +11,9 @@ type UserGroup struct {
 
 func (ug *UserGroup) Group(group route.Grouper) {
 	//group.GET("/info/userId", ug.UserController.Info).Can(policies.NewUserPolicy(), policy.ActionView)
-	group.GET("/user/info", ug.UserController.Info).Name("uesrinfo")
+	group.POST("/info", ug.UserController.Info).Name("uesrinfo")
 
-	group.GET("/update", ug.UserController.Update).Name("user.update")
+	group.POST("/update", ug.UserController.Update).Name("user.update")
 	group.GET("/delete", ug.UserController.Delete).Name("user.delete")
 	group.GET("/delete-transaction", ug.UserController.DeleteTransaction).Name("user.delete-transaction")
 	group.GET("/logout", ug.UserController.LogOut).Name("user.logout")

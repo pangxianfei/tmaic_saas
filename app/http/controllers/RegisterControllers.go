@@ -2,8 +2,12 @@ package controllers
 
 import (
 	"errors"
+	"github.com/pangxianfei/framework/helpers/log"
+	"github.com/pangxianfei/framework/hub"
 	"net/http"
 	"strconv"
+	"tmaic/app/events"
+	pbs "tmaic/app/events/protocol_buffers"
 	"tmaic/app/http/requests"
 	"tmaic/app/models"
 
@@ -44,15 +48,15 @@ func (r *Register) Register(c request.Context) {
 	m.Transaction(func(TransactionHelper *helper.Helper) {
 
 		user := models.User{
-			Name:  &requestData.Email,
-			Email: &requestData.Email,
+			Name:  requestData.Email,
+			Email: requestData.Email,
 		}
 		if TransactionHelper.Exist(&user, true) {
 			panic(errors.New(helpers.L(c, "auth.register.failed_existed")))
 		}
 
 		encryptedPassword := crypt.Bcrypt(requestData.Password)
-		user.Password = &encryptedPassword
+		user.Password = encryptedPassword
 		if err := TransactionHelper.Create(&user); err != nil {
 			panic(errors.New(helpers.L(c, "auth.register.failed_system_error")))
 		}
@@ -60,33 +64,33 @@ func (r *Register) Register(c request.Context) {
 		// create token
 		newJwt := jwt.NewJWT()
 		username := ""
-		if user.Name != nil {
-			username = *user.Name
+		if user.Name != "" {
+			username = user.Name
 		}
 		var err error
-		token, err = newJwt.CreateToken(strconv.Itoa(int(*user.ID)), username)
+		token, err = newJwt.CreateToken(strconv.Itoa(int(user.ID)), username)
 		if err != nil {
 			panic(helpers.L(c, "auth.register.failed_token_generate_error"))
 		}
 
-		userId = *user.ID
+		userId = uint(user.ID)
 	}, 1)
-	/*
-		// emit user-registered event
-		ur := events.UserRegistered{}
-		param := &pbs.UserRegistered{
-			UserId:              uint32(userId),
-			AffiliationFromCode: "",
-		}
-		if requestData.AffiliationFromCode != nil {
-			param.AffiliationFromCode = *requestData.AffiliationFromCode
-		}
-		ur.SetParam(param)
-		if errs := hub.Emit(&ur); errs != nil {
-			log.Info("user registered event emit failed", tmaic.V{"event": ur, "errors": errs})
-		}
-	*/
 
-	c.JSON(http.StatusOK, tmaic.V{"token": token})
+	// 注册事件
+	ur := events.UserRegistered{}
+	param := &pbs.UserRegistered{
+		UserId:              uint32(userId),
+		AffiliationFromCode: "",
+	}
+	if requestData.AffiliationFromCode != nil {
+		//验证码
+		param.AffiliationFromCode = *requestData.AffiliationFromCode
+	}
+	ur.SetParam(param)
+	if errs := hub.Emit(&ur); errs != nil {
+		log.Info("user registered event emit failed", tmaic.Output{"event": ur, "errors": errs})
+	}
+
+	c.JSON(http.StatusOK, tmaic.Output{"token": token})
 	return
 }

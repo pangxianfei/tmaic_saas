@@ -2,6 +2,7 @@ package versions
 
 import (
 	"github.com/foolin/gin-template"
+	c "github.com/pangxianfei/framework/config"
 	"github.com/pangxianfei/framework/request"
 	"github.com/pangxianfei/framework/route"
 	"net/http"
@@ -26,22 +27,18 @@ func V1Api(engine *request.Engine) {
 func WebRoute(engine *request.Engine) {
 	ver := route.NewVersion(engine, "")
 
-	//engine.LoadHTMLGlob("./resources/views/**/*")
 	//处理静态资源（不建议gin框架处理静态资源，参见 public/readme.md 说明 ）
-	engine.Static("/public", "./public")
+	engine.Static(c.GetString("app.public_path"), "./public")
 	engine.StaticFS("/dir", http.Dir("./public"))
 	engine.HTMLRender = gintemplate.New(gintemplate.TemplateConfig{
-		Root:      "./resources/views",
-		Extension: ".html",
-		Master:    "layouts/master",
-
+		Root:         c.GetString("TEMPLATE_TPL"),
+		Extension:    c.GetString("app.SUFFIX"),
+		Master:       c.GetString("app.layout"),
 		DisableCache: true,
 	})
 
 	//用户中心
-	ver.Auth("", func(grp route.Grouper) {
-		//grp.AddGroup("/user", &groups.UserGroup{})
-	})
+	ver.Auth("", func(grp route.Grouper) {})
 
 	ver.NoAuth("", func(grp route.Grouper) {
 		grp.AddGroup("", &groups.UserAffiliationGroup{})

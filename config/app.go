@@ -26,6 +26,11 @@ func init() {
 
 	app["TEMPLATE_TPL"] = Env("TEMPLATE_TPL", "./resources/views/")
 	app["SUFFIX"] = Env("SUFFIX", ".html")
+	app["layout"] = Env("LAYOUTS", ".html")
+	app["public_path"] = Env("PUBLIC_PATH", "/public")
+
+	//token
+	app["token_encryption"] = Env("TOKE_KEY_ENCRYPTION", false)
 
 	Add("app", app)
 }

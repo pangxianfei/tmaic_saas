@@ -4,12 +4,16 @@
 
 #### 介绍
 tmaic 是一套简洁、优雅的Golang Web开发框架(GoLang Web Framework)。支持mysql,mssql等多类型数据库，它可以让你从面条一样杂乱的代码中解脱出来；它可以帮你构建一个完美的网络应用，而且每行代码都可以简洁、富于表达力。
+
 #### 软件架构
-软件架构说明
+
+
 # 问题反馈
 
 1.提交问题请在项目顶栏的issue直接添加问题，基本上都是每天处理当天上报的问题。
+
 2.本项目优先关注 https://gitee.com/pangxianfei/tmaic 仓库的所有问题, github 太卡严重影响效率。
+
 3.QQ群：50403087 欢迎喜欢gin框架go开发者一期参与讨论.
 
 # 招募共同开发者
@@ -55,24 +59,38 @@ func (user *User) GetUpdatedAtAttribute(value interface{}) interface{} {
 # 生成公钥文件
 
 tmaic.CreateRsaKey()
-### 系统函数
-# 加密解密函数
-# 公钥加密
 
-s,_:= tmaic.Encryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
+# 系统函数
+### 加密解密函数
+### 公钥加密
 
-# 私钥解密
+s,_:= tmaic.Encryption("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现")
+
+### 私钥解密
 dd,_ := tmaic.Decrypt(s)
 
-# 私钥加密
-s,_:= tmaic.PrivateEncryption(string("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现"))
+### 私钥加密
+s,_:= tmaic.PrivateEncryption("Golang使用RSA进行公钥加密私钥解密,私钥加密公钥解密的实现")
 
-公钥解密
+### 公钥解密
 dd,_ := tmaic.PublicDecrypt(s)
 
-# 注意事项：如果要使用 NSQ 队列的，不用将包注释
+### 注意事项：如果要使用 NSQ 队列的，不用将包注释
+
+
+### 校验密码是否正确
+user.Password：用户密码（已加密）
+
+requestData.Password：要校验的密码（明文）
+```golang
+if !crypt.BcryptCheck(user.Password, requestData.Password) error{
+    
+    return "返回提示信息"
+}
+```
 
 导入包：
+
 "github.com/pangxianfei/framework/queue"
 
 "tmaic/app/events"
@@ -129,11 +147,3 @@ ab -c 1000 -n 5000  -k http://127.0.0.1/all
 4.  新建 Pull Request
 
 
-#### 特技
-
-1.  使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-2.  Gitee 官方博客 [blog.gitee.com](https://blog.gitee.com)
-3.  你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解 Gitee 上的优秀开源项目
-4.  [GVP](https://gitee.com/gvp) 全称是 Gitee 最有价值开源项目，是综合评定出的优秀开源项目
-5.  Gitee 官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
-6.  Gitee 封面人物是一档用来展示 Gitee 会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)

@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"context"
 	tmaic "github.com/pangxianfei/framework"
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/http/controller"
@@ -8,6 +9,7 @@ import (
 	"github.com/pangxianfei/framework/policy"
 	"github.com/pangxianfei/framework/request"
 	"net/http"
+	"time"
 	"tmaic/app/http/requests"
 	"tmaic/app/models"
 	"tmaic/app/policies"
@@ -93,6 +95,15 @@ func (u *User) Update(c request.Context) {
 		c.JSON(http.StatusOK, tmaic.Output{"data": err})
 		return
 	}
+
+	ctx, _ := context.WithTimeout(context.Background(), time.Second)
+
+	ctxDB := user.DB().WithContext(ctx)
+
+	for i := 0; i < 100; i++ {
+		go ctxDB.Debug().First(&user)
+	}
+
 
 	c.JSON(http.StatusOK, tmaic.Output{"data": t})
 	return

@@ -1,20 +1,16 @@
 package controllers
 
 import (
-	"context"
-	tmaic "github.com/pangxianfei/framework"
-	"github.com/pangxianfei/framework/gconv"
+	. "github.com/pangxianfei/framework"
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/http/controller"
 	"github.com/pangxianfei/framework/http/middleware"
 	"github.com/pangxianfei/framework/policy"
 	"github.com/pangxianfei/framework/request"
 	"net/http"
-	"time"
 	"tmaic/app/http/requests"
 	"tmaic/app/models"
 	"tmaic/app/policies"
-	UserService "tmaic/app/service/users"
 )
 
 type User struct {
@@ -23,10 +19,10 @@ type User struct {
 
 func (*User) LogOut(c request.Context) {
 	if err := middleware.Revoke(c); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, tmaic.V{"error": err.Error()})
+		c.JSON(http.StatusUnprocessableEntity, V{"error": err.Error()})
 		return
 	}
-	c.JSON(http.StatusOK, tmaic.V{})
+	c.JSON(http.StatusOK, V{})
 	return
 }
 
@@ -38,25 +34,24 @@ func (u *User) Info(c request.Context) {
 	user := c.User().Value().(*models.User)
 
 	if permit, _ := u.Authorize(c, policies.NewUserPolicy(), policy.ActionView); !permit {
-		c.JSON(http.StatusForbidden, tmaic.V{"error": policy.UserNotPermitError{}.Error()})
+		c.JSON(http.StatusForbidden, V{"error": policy.UserNotPermitError{}.Error()})
 		return
 	}
 
-	c.JSON(http.StatusOK, tmaic.V{"data": user})
+	c.JSON(http.StatusOK, V{"data": user})
 	return
 }
 
 func (*User) AllUser(c request.Context) {
 	user := &models.User{}
 
-	c.JSON(http.StatusOK, tmaic.V{"data": user})
+	c.JSON(http.StatusOK, V{"data": user})
 	return
 }
 
 func (*User) PaginateUser(c request.Context) {
 	user := &models.User{}
-
-	c.JSON(http.StatusOK, tmaic.V{"data": user})
+	c.JSON(http.StatusOK, V{"data": user})
 	return
 }
 
@@ -73,39 +68,64 @@ func (u *User) Update(c request.Context) {
 	}
 
 	//更新
-	t := UserService.UserService.Get(gconv.Int64(requestData.ID))
-	t.Email = requestData.Email
-	t.Name = requestData.Name
-	_ = UserService.UserService.Update(t)
+	/*
+		t := UserService.UserService.Get(gconv.Int64(requestData.ID))
+		t.Email = requestData.Email
+		t.Name = requestData.Name
+		_ = UserService.UserService.Update(t)
+	*/
 
-	user := &models.User{
-		ID: 19,
+	var id int64
+	id = 18
+	userUpdate := models.User{
+		ID: id,
+	}
+	if err := m.H().First(&userUpdate, false); err != nil {
+		c.JSON(http.StatusUnprocessableEntity, V{"error": err.Error()})
+		return
 	}
 
-	//查询
-	if err := user.DB().Debug().Where(user).First(user).Error; err != nil {
-		c.JSON(http.StatusOK, tmaic.Output{"data": err})
+	modifyUser := models.User{
+		Name: requestData.Name,
+	}
+
+	if err := m.H().Save(&userUpdate, modifyUser); err != nil {
+		c.JSON(http.StatusUnprocessableEntity, V{"error": err})
 		return
 	}
 
 	//查询
-	DeleteUser := models.User{
-		ID: 30,
-	}
-	if err := user.DB().Debug().Delete(DeleteUser).Error; err != nil {
-		c.JSON(http.StatusOK, tmaic.Output{"data": err})
-		return
-	}
+	/*
+		user := &models.User{
+			ID: 18,
+		}
+		if err := user.DB().Debug().Where(user).First(user).Error; err != nil {
+			c.JSON(http.StatusOK, Output{"data": err})
+			return
+		}*/
 
-	ctx, _ := context.WithTimeout(context.Background(), time.Second)
+	//删除
+	/*
+		DeleteUser := models.User{
+			ID: 30,
+		}
+		if err := user.DB().Debug().Delete(DeleteUser).Error; err != nil {
+			c.JSON(http.StatusOK, Output{"data": err})
+			return
+		}*/
 
-	ctxDB := user.DB().WithContext(ctx)
+	//批量查询
+	/*
+		ctx, _ := context.WithTimeout(context.Background(), time.Second)
 
-	for i := 0; i < 100; i++ {
-		go ctxDB.Debug().First(&user)
-	}
+		ctxDB := user.DB().WithContext(ctx)
 
-	c.JSON(http.StatusOK, tmaic.Output{"data": t})
+		for i := 0; i < 100; i++ {
+			go ctxDB.Debug().First(&user)
+		}
+	*/
+
+	c.JSON(http.StatusOK, Output{"data": userUpdate})
 	return
 }
 
@@ -115,16 +135,16 @@ func (*User) Delete(c request.Context) {
 		ID: 78,
 	}
 	if err := m.H().Delete(&user, false); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, tmaic.V{"error": err})
+		c.JSON(http.StatusUnprocessableEntity, V{"error": err})
 		return
 	}
-	c.JSON(http.StatusOK, tmaic.V{"data": true})
+	c.JSON(http.StatusOK, V{"data": true})
 	return
 }
 func (*User) DeleteTransaction(c request.Context) {
 	defer func() { // handle transaction error
 		if err := recover(); err != nil {
-			c.JSON(http.StatusUnprocessableEntity, tmaic.V{"error": err.(error).Error()})
+			c.JSON(http.StatusUnprocessableEntity, V{"error": err.(error).Error()})
 			return
 		}
 	}()
@@ -139,7 +159,7 @@ func (*User) DeleteTransaction(c request.Context) {
 		}
 	}, 1)
 
-	c.JSON(http.StatusOK, tmaic.V{"data": true})
+	c.JSON(http.StatusOK, V{"data": true})
 	return
 }
 func (*User) Restore(c request.Context) {
@@ -149,9 +169,9 @@ func (*User) Restore(c request.Context) {
 	}
 
 	if err := m.H().Restore(&modifyUser); err != nil {
-		c.JSON(http.StatusUnprocessableEntity, tmaic.V{"error": err})
+		c.JSON(http.StatusUnprocessableEntity, V{"error": err})
 		return
 	}
-	c.JSON(http.StatusOK, tmaic.V{"data": true})
+	c.JSON(http.StatusOK, V{"data": true})
 	return
 }

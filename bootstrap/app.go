@@ -2,6 +2,7 @@ package bootstrap
 
 import (
 	"github.com/pangxianfei/framework/cache"
+	conf "github.com/pangxianfei/framework/config"
 	"github.com/pangxianfei/framework/database"
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/helpers/zone"
@@ -37,10 +38,10 @@ func Initialize() {
 func Middleware(r *request.Engine) {
 	r.Use(middleware.RequestLogger())
 
-	//if c.GetString("app.env") == "production" {
-	r.Use(middleware.Logger())
-	r.Use(middleware.Recovery())
-	//}
+	if conf.GetString("app.env") == "production" {
+		r.Use(middleware.Logger())
+		r.Use(middleware.Recovery())
+	}
 
 	r.Use(middleware.Locale())
 }

@@ -4,7 +4,7 @@ import (
 	"github.com/golang/protobuf/proto"
 	"github.com/pangxianfei/framework/helpers/debug"
 	"github.com/pangxianfei/framework/job"
-	pbs "tmaic/app/jobs/protocol_buffers"
+	pbs "tmaic/app/jobs/protocol_jobs"
 )
 
 func init() {

@@ -2,10 +2,8 @@ package controllers
 
 import (
 	tmaic "github.com/pangxianfei/framework"
-	//"github.com/pangxianfei/framework/gconv"
 	"github.com/pangxianfei/framework/http/controller"
 	"github.com/pangxianfei/framework/request"
-	//"net/http"
 )
 
 type Affiliation struct {

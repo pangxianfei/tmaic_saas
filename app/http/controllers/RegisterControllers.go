@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strconv"
 	"tmaic/app/events"
-	pbs "tmaic/app/events/protocol_buffers"
+	pbs "tmaic/app/events/protocol_model"
 	"tmaic/app/http/requests"
 	"tmaic/app/models"
 

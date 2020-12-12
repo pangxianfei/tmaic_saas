@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: pbs.proto
+// source: demojobs.proto
 
-package pbs
+package jobs
 
 import (
 	proto "github.com/golang/protobuf/proto"
@@ -38,7 +38,7 @@ type DemoJob struct {
 func (x *DemoJob) Reset() {
 	*x = DemoJob{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbs_proto_msgTypes[0]
+		mi := &file_demojobs_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -51,7 +51,7 @@ func (x *DemoJob) String() string {
 func (*DemoJob) ProtoMessage() {}
 
 func (x *DemoJob) ProtoReflect() protoreflect.Message {
-	mi := &file_pbs_proto_msgTypes[0]
+	mi := &file_demojobs_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -64,7 +64,7 @@ func (x *DemoJob) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DemoJob.ProtoReflect.Descriptor instead.
 func (*DemoJob) Descriptor() ([]byte, []int) {
-	return file_pbs_proto_rawDescGZIP(), []int{0}
+	return file_demojobs_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *DemoJob) GetQuery() string {
@@ -88,36 +88,37 @@ func (x *DemoJob) GetResultPerPage() int32 {
 	return 0
 }
 
-var File_pbs_proto protoreflect.FileDescriptor
+var File_demojobs_proto protoreflect.FileDescriptor
 
-var file_pbs_proto_rawDesc = []byte{
-	0x0a, 0x09, 0x70, 0x62, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x68, 0x0a, 0x07, 0x64,
-	0x65, 0x6d, 0x6f, 0x4a, 0x6f, 0x62, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18,
-	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x12, 0x1f, 0x0a, 0x0b,
-	0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28,
-	0x05, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x26, 0x0a,
-	0x0f, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x5f, 0x70, 0x65, 0x72, 0x5f, 0x70, 0x61, 0x67, 0x65,
-	0x18, 0x03, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0d, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x65,
-	0x72, 0x50, 0x61, 0x67, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+var file_demojobs_proto_rawDesc = []byte{
+	0x0a, 0x0e, 0x64, 0x65, 0x6d, 0x6f, 0x6a, 0x6f, 0x62, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f,
+	0x12, 0x04, 0x6a, 0x6f, 0x62, 0x73, 0x22, 0x68, 0x0a, 0x07, 0x64, 0x65, 0x6d, 0x6f, 0x4a, 0x6f,
+	0x62, 0x12, 0x14, 0x0a, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x05, 0x71, 0x75, 0x65, 0x72, 0x79, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f,
+	0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x0a, 0x70, 0x61,
+	0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x26, 0x0a, 0x0f, 0x72, 0x65, 0x73, 0x75,
+	0x6c, 0x74, 0x5f, 0x70, 0x65, 0x72, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x05, 0x52, 0x0d, 0x72, 0x65, 0x73, 0x75, 0x6c, 0x74, 0x50, 0x65, 0x72, 0x50, 0x61, 0x67, 0x65,
+	0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_pbs_proto_rawDescOnce sync.Once
-	file_pbs_proto_rawDescData = file_pbs_proto_rawDesc
+	file_demojobs_proto_rawDescOnce sync.Once
+	file_demojobs_proto_rawDescData = file_demojobs_proto_rawDesc
 )
 
-func file_pbs_proto_rawDescGZIP() []byte {
-	file_pbs_proto_rawDescOnce.Do(func() {
-		file_pbs_proto_rawDescData = protoimpl.X.CompressGZIP(file_pbs_proto_rawDescData)
+func file_demojobs_proto_rawDescGZIP() []byte {
+	file_demojobs_proto_rawDescOnce.Do(func() {
+		file_demojobs_proto_rawDescData = protoimpl.X.CompressGZIP(file_demojobs_proto_rawDescData)
 	})
-	return file_pbs_proto_rawDescData
+	return file_demojobs_proto_rawDescData
 }
 
-var file_pbs_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_pbs_proto_goTypes = []interface{}{
-	(*DemoJob)(nil), // 0: demoJob
+var file_demojobs_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_demojobs_proto_goTypes = []interface{}{
+	(*DemoJob)(nil), // 0: jobs.demoJob
 }
-var file_pbs_proto_depIdxs = []int32{
+var file_demojobs_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -125,13 +126,13 @@ var file_pbs_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_pbs_proto_init() }
-func file_pbs_proto_init() {
-	if File_pbs_proto != nil {
+func init() { file_demojobs_proto_init() }
+func file_demojobs_proto_init() {
+	if File_demojobs_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pbs_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_demojobs_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*DemoJob); i {
 			case 0:
 				return &v.state
@@ -148,18 +149,18 @@ func file_pbs_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pbs_proto_rawDesc,
+			RawDescriptor: file_demojobs_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_pbs_proto_goTypes,
-		DependencyIndexes: file_pbs_proto_depIdxs,
-		MessageInfos:      file_pbs_proto_msgTypes,
+		GoTypes:           file_demojobs_proto_goTypes,
+		DependencyIndexes: file_demojobs_proto_depIdxs,
+		MessageInfos:      file_demojobs_proto_msgTypes,
 	}.Build()
-	File_pbs_proto = out.File
-	file_pbs_proto_rawDesc = nil
-	file_pbs_proto_goTypes = nil
-	file_pbs_proto_depIdxs = nil
+	File_demojobs_proto = out.File
+	file_demojobs_proto_rawDesc = nil
+	file_demojobs_proto_goTypes = nil
+	file_demojobs_proto_depIdxs = nil
 }

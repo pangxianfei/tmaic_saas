@@ -2,12 +2,13 @@ package listeners
 
 import (
 	"errors"
+	"tmaic/app/events/protocol_model"
+
 	"github.com/golang/protobuf/proto"
 	"github.com/pangxianfei/framework/config"
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/hub"
 	"tmaic/app/events"
-	pbs "tmaic/app/events/protocol_buffers"
 	"tmaic/app/models"
 )
 
@@ -21,33 +22,31 @@ type AddUserAffiliation struct {
 	hub.Listen
 }
 
-func (userAdd *AddUserAffiliation) Name() hub.ListenerName {
+func (auaff *AddUserAffiliation) Name() hub.ListenerName {
 	return "add-user-affiliation"
 }
 
-func (userAdd *AddUserAffiliation) Subscribe() (eventPtrList []hub.Eventer) {
-
+func (auaff *AddUserAffiliation) Subscribe() (eventPtrList []hub.Eventer) {
 	return []hub.Eventer{
 		&events.UserRegistered{},
 	}
-
 }
 
-func (userAdd *AddUserAffiliation) Construct(paramPtr proto.Message) error {
-	// 事件类型断言
-	param, ok := paramPtr.(*pbs.UserRegistered)
+func (auaff *AddUserAffiliation) Construct(paramPtr proto.Message) error {
+	// event type assertion
+	param, ok := paramPtr.(*listenmodel.UserRegistered)
 	if !ok {
 		return errors.New("listener param is invalid")
 	}
 
-	userAdd.affiliationFromCode = nil
+	auaff.affiliationFromCode = nil
 	if param.AffiliationFromCode != "" && checkFromCode(param.AffiliationFromCode) {
-		userAdd.affiliationFromCode = &param.AffiliationFromCode
+		auaff.affiliationFromCode = &param.AffiliationFromCode
 	}
 
 	uid := int64(param.GetUserId())
-	userAdd.user = models.User{ID: uid}
-	if err := m.H().First(&userAdd.user, false); err != nil {
+	auaff.user = models.User{ID: uid}
+	if err := m.H().First(&auaff.user, false); err != nil {
 		return err
 	}
 
@@ -55,7 +54,7 @@ func (userAdd *AddUserAffiliation) Construct(paramPtr proto.Message) error {
 }
 
 func (userAdd *AddUserAffiliation) Handle() error {
-	// 添加用户从属关系
+	// add user affiliation
 	if config.GetBool("user_affiliation.enable") {
 		uaffPtr := &models.UserAffiliation{
 			UserID: &userAdd.user.ID,

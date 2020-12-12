@@ -2,9 +2,9 @@
 // versions:
 // 	protoc-gen-go v1.25.0
 // 	protoc        v3.14.0
-// source: pbs.proto
+// source: UserRegistered .proto
 
-package pbs
+package listenmodel
 
 import (
 	proto "github.com/golang/protobuf/proto"
@@ -37,7 +37,7 @@ type UserRegistered struct {
 func (x *UserRegistered) Reset() {
 	*x = UserRegistered{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_pbs_proto_msgTypes[0]
+		mi := &file_UserRegistered__proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -50,7 +50,7 @@ func (x *UserRegistered) String() string {
 func (*UserRegistered) ProtoMessage() {}
 
 func (x *UserRegistered) ProtoReflect() protoreflect.Message {
-	mi := &file_pbs_proto_msgTypes[0]
+	mi := &file_UserRegistered__proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -63,7 +63,7 @@ func (x *UserRegistered) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserRegistered.ProtoReflect.Descriptor instead.
 func (*UserRegistered) Descriptor() ([]byte, []int) {
-	return file_pbs_proto_rawDescGZIP(), []int{0}
+	return file_UserRegistered__proto_rawDescGZIP(), []int{0}
 }
 
 func (x *UserRegistered) GetUserId() uint32 {
@@ -80,36 +80,37 @@ func (x *UserRegistered) GetAffiliationFromCode() string {
 	return ""
 }
 
-var File_pbs_proto protoreflect.FileDescriptor
+var File_UserRegistered__proto protoreflect.FileDescriptor
 
-var file_pbs_proto_rawDesc = []byte{
-	0x0a, 0x09, 0x70, 0x62, 0x73, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x22, 0x5d, 0x0a, 0x0e, 0x55,
-	0x73, 0x65, 0x72, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x64, 0x12, 0x17, 0x0a,
-	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x06,
-	0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x32, 0x0a, 0x15, 0x61, 0x66, 0x66, 0x69, 0x6c, 0x69,
-	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x66, 0x72, 0x6f, 0x6d, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x13, 0x61, 0x66, 0x66, 0x69, 0x6c, 0x69, 0x61, 0x74, 0x69,
-	0x6f, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x6f, 0x64, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x33,
+var file_UserRegistered__proto_rawDesc = []byte{
+	0x0a, 0x15, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x67, 0x69, 0x73, 0x74, 0x65, 0x72, 0x65, 0x64,
+	0x20, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x6c, 0x69, 0x73, 0x74, 0x65, 0x6e, 0x6d,
+	0x6f, 0x64, 0x65, 0x6c, 0x22, 0x5d, 0x0a, 0x0e, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x67, 0x69,
+	0x73, 0x74, 0x65, 0x72, 0x65, 0x64, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69,
+	0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12,
+	0x32, 0x0a, 0x15, 0x61, 0x66, 0x66, 0x69, 0x6c, 0x69, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x66,
+	0x72, 0x6f, 0x6d, 0x5f, 0x63, 0x6f, 0x64, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x13,
+	0x61, 0x66, 0x66, 0x69, 0x6c, 0x69, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43,
+	0x6f, 0x64, 0x65, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
-	file_pbs_proto_rawDescOnce sync.Once
-	file_pbs_proto_rawDescData = file_pbs_proto_rawDesc
+	file_UserRegistered__proto_rawDescOnce sync.Once
+	file_UserRegistered__proto_rawDescData = file_UserRegistered__proto_rawDesc
 )
 
-func file_pbs_proto_rawDescGZIP() []byte {
-	file_pbs_proto_rawDescOnce.Do(func() {
-		file_pbs_proto_rawDescData = protoimpl.X.CompressGZIP(file_pbs_proto_rawDescData)
+func file_UserRegistered__proto_rawDescGZIP() []byte {
+	file_UserRegistered__proto_rawDescOnce.Do(func() {
+		file_UserRegistered__proto_rawDescData = protoimpl.X.CompressGZIP(file_UserRegistered__proto_rawDescData)
 	})
-	return file_pbs_proto_rawDescData
+	return file_UserRegistered__proto_rawDescData
 }
 
-var file_pbs_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
-var file_pbs_proto_goTypes = []interface{}{
-	(*UserRegistered)(nil), // 0: UserRegistered
+var file_UserRegistered__proto_msgTypes = make([]protoimpl.MessageInfo, 1)
+var file_UserRegistered__proto_goTypes = []interface{}{
+	(*UserRegistered)(nil), // 0: listenmodel.UserRegistered
 }
-var file_pbs_proto_depIdxs = []int32{
+var file_UserRegistered__proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
 	0, // [0:0] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -117,13 +118,13 @@ var file_pbs_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_pbs_proto_init() }
-func file_pbs_proto_init() {
-	if File_pbs_proto != nil {
+func init() { file_UserRegistered__proto_init() }
+func file_UserRegistered__proto_init() {
+	if File_UserRegistered__proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_pbs_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_UserRegistered__proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*UserRegistered); i {
 			case 0:
 				return &v.state
@@ -140,18 +141,18 @@ func file_pbs_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_pbs_proto_rawDesc,
+			RawDescriptor: file_UserRegistered__proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_pbs_proto_goTypes,
-		DependencyIndexes: file_pbs_proto_depIdxs,
-		MessageInfos:      file_pbs_proto_msgTypes,
+		GoTypes:           file_UserRegistered__proto_goTypes,
+		DependencyIndexes: file_UserRegistered__proto_depIdxs,
+		MessageInfos:      file_UserRegistered__proto_msgTypes,
 	}.Build()
-	File_pbs_proto = out.File
-	file_pbs_proto_rawDesc = nil
-	file_pbs_proto_goTypes = nil
-	file_pbs_proto_depIdxs = nil
+	File_UserRegistered__proto = out.File
+	file_UserRegistered__proto_rawDesc = nil
+	file_UserRegistered__proto_goTypes = nil
+	file_UserRegistered__proto_depIdxs = nil
 }

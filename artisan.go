@@ -33,7 +33,7 @@ func cliServe() {
 	app := cli.NewApp()
 	app.Name = "artisan"
 	app.Usage = "Let's work like an artisan"
-	app.Version = "1.0.1"
+	app.Version = "1.0.2"
 
 	app.Commands = cmd.List()
 

@@ -2,7 +2,6 @@ package listeners
 
 import (
 	"errors"
-
 	"github.com/golang/protobuf/proto"
 	"github.com/pangxianfei/framework/config"
 	"github.com/pangxianfei/framework/helpers/m"
@@ -22,31 +21,33 @@ type AddUserAffiliation struct {
 	hub.Listen
 }
 
-func (auaff *AddUserAffiliation) Name() hub.ListenerName {
+func (userAdd *AddUserAffiliation) Name() hub.ListenerName {
 	return "add-user-affiliation"
 }
 
-func (auaff *AddUserAffiliation) Subscribe() (eventPtrList []hub.Eventer) {
+func (userAdd *AddUserAffiliation) Subscribe() (eventPtrList []hub.Eventer) {
+
 	return []hub.Eventer{
 		&events.UserRegistered{},
 	}
+
 }
 
-func (auaff *AddUserAffiliation) Construct(paramPtr proto.Message) error {
-	// event type assertion
+func (userAdd *AddUserAffiliation) Construct(paramPtr proto.Message) error {
+	// 事件类型断言
 	param, ok := paramPtr.(*pbs.UserRegistered)
 	if !ok {
 		return errors.New("listener param is invalid")
 	}
 
-	auaff.affiliationFromCode = nil
+	userAdd.affiliationFromCode = nil
 	if param.AffiliationFromCode != "" && checkFromCode(param.AffiliationFromCode) {
-		auaff.affiliationFromCode = &param.AffiliationFromCode
+		userAdd.affiliationFromCode = &param.AffiliationFromCode
 	}
 
-	uid := uint(param.GetUserId())
-	auaff.user = models.User{ID: uid}
-	if err := m.H().First(&auaff.user, false); err != nil {
+	uid := int64(param.GetUserId())
+	userAdd.user = models.User{ID: uid}
+	if err := m.H().First(&userAdd.user, false); err != nil {
 		return err
 	}
 
@@ -54,7 +55,7 @@ func (auaff *AddUserAffiliation) Construct(paramPtr proto.Message) error {
 }
 
 func (userAdd *AddUserAffiliation) Handle() error {
-	// add user affiliation
+	// 添加用户从属关系
 	if config.GetBool("user_affiliation.enable") {
 		uaffPtr := &models.UserAffiliation{
 			UserID: &userAdd.user.ID,
@@ -75,8 +76,8 @@ func (userAdd *AddUserAffiliation) Handle() error {
 
 // 检验验证码
 func checkFromCode(affiliationFromCode string) bool {
-	uaff := models.UserAffiliation{
+	FromCode := models.UserAffiliation{
 		Code: &affiliationFromCode,
 	}
-	return m.H().Exist(&uaff, false)
+	return m.H().Exist(&FromCode, false)
 }

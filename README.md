@@ -112,8 +112,27 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 //events.Initialize()
 
 //listeners.Initialize()
+### 打印
 
-# NSQ安装请参考：https://nsq.io/overview/quick_start.html
+tmaic.Dump(mugs)
+```golang
+    mugs := map[string]interface{} {
+        "password2" : map[string]string {
+        "password3" : "The name cannot be empty",
+        },
+    }
+    
+    //效果
+    {
+        "password2": {
+            "password3": "The name cannot be empty"
+        }
+    }
+    
+```
+
+
+### NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
 
 # 性能测试

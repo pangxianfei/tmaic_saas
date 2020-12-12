@@ -3,6 +3,7 @@ package controllers
 import (
 	"context"
 	tmaic "github.com/pangxianfei/framework"
+	"github.com/pangxianfei/framework/gconv"
 	"github.com/pangxianfei/framework/helpers/m"
 	"github.com/pangxianfei/framework/http/controller"
 	"github.com/pangxianfei/framework/http/middleware"
@@ -72,7 +73,7 @@ func (u *User) Update(c request.Context) {
 	}
 
 	//更新
-	t := UserService.UserService.Get(u.GetInt64(requestData.ID))
+	t := UserService.UserService.Get(gconv.Int64(requestData.ID))
 	t.Email = requestData.Email
 	t.Name = requestData.Name
 	_ = UserService.UserService.Update(t)
@@ -103,7 +104,6 @@ func (u *User) Update(c request.Context) {
 	for i := 0; i < 100; i++ {
 		go ctxDB.Debug().First(&user)
 	}
-
 
 	c.JSON(http.StatusOK, tmaic.Output{"data": t})
 	return

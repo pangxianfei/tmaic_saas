@@ -20,11 +20,13 @@ import (
 )
 
 func init() {
-	runtime.GOMAXPROCS(runtime.NumCPU())
+
 	bootstrap.Initialize()
 }
 
 func main() {
+
+	runtime.GOMAXPROCS(runtime.NumCPU())
 
 	ctx, cancel := context.WithCancel(context.Background())
 
@@ -57,7 +59,6 @@ func httpServe(parentCtx context.Context, wg *sync.WaitGroup) {
 
 	routes.Register(r)
 
-	//views.Initialize(r)
 	s := &http.Server{
 		Addr:           ":" + c.GetString("app.port"),
 		Handler:        r,
@@ -66,17 +67,17 @@ func httpServe(parentCtx context.Context, wg *sync.WaitGroup) {
 		MaxHeaderBytes: 1 << 20,
 	}
 	go func() {
-		log.Info("Served At", tmaic.V{"Addr": s.Addr})
+		//log.Info("Served At", tmaic.V{"Addr": s.Addr})
 		if err := s.ListenAndServe(); err != nil && err != http.ErrServerClosed {
 			log.Fatal(err.Error())
 		}
 	}()
 	<-parentCtx.Done()
-	log.Info("Shutdown Server ...")
+	//log.Info("Shutdown Server ...")
 	ctx, cancel := context.WithTimeout(parentCtx, 5*zone.Second)
 	defer cancel()
 	if err := s.Shutdown(ctx); err != nil {
-		log.Fatal("Server Shutdown: ", tmaic.V{"error": err})
+		//log.Fatal("Server Shutdown: ", tmaic.V{"error": err})
 	}
 	wg.Done()
 }

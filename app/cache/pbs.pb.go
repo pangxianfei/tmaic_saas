@@ -1,6 +1,3 @@
-//protoc gen go生成的代码。不要编辑。
-//资料来源：pbs原型
-
 package pbs
 
 import (
@@ -9,17 +6,11 @@ import (
 	math "math"
 )
 
-// Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
 
-//这是一个编译时断言，以确保生成的文件
-//与正在编译的proto包兼容。
-//这一行的编译错误可能意味着
-//proto包需要更新。
-//请升级proto包
-const _ = proto.ProtoPackageIsVersion3 
+const _ = proto.ProtoPackageIsVersion3
 
 type Test struct {
 	UserId               uint32   `protobuf:"varint,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -75,7 +66,6 @@ func init() {
 func init() { proto.RegisterFile("pbs.proto", fileDescriptor_f262ac8d8cf0a40b) }
 
 var fileDescriptor_f262ac8d8cf0a40b = []byte{
-	// 95 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0xe2, 0x2c, 0x48, 0x2a, 0xd6,
 	0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x57, 0xb2, 0xe1, 0x62, 0x09, 0x49, 0x2d, 0x2e, 0x11, 0x12, 0xe7,
 	0x62, 0x2f, 0x2d, 0x4e, 0x2d, 0x8a, 0xcf, 0x4c, 0x91, 0x60, 0x54, 0x60, 0xd4, 0xe0, 0x0d, 0x62,

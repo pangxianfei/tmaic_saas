@@ -117,7 +117,7 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 ### NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
 # 队列
-### 例子：注册事件
+### 例子：用户注册事件
 ```golang
 	// 注册事件
 UserRegisteredEvent := events.UserRegistered{}

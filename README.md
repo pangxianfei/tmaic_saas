@@ -117,7 +117,7 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 ### NSQ安装请参考：https://nsq.io/overview/quick_start.html
 ##### nsq启动
 
-1.nsqadmin --lookupd-http-address=127.0.0.1:4161
+1.nsqlookupd
 
 2.nsqd --lookupd-tcp-address=127.0.0.1:4160
 

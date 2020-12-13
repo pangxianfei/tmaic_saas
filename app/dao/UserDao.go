@@ -4,16 +4,15 @@ import (
 	"tmaic/app/models"
 )
 
-var UserDao = newUserRepository()
+var UserDao = newUserDao()
 
-func newUserRepository() *userRepository {
-	return &userRepository{}
+func newUserDao() *userDao {
+	return &userDao{}
 }
 
-type userRepository struct {
-}
+type userDao struct{}
 
-func (r *userRepository) Get(id int64) *models.User {
+func (r *userDao) Get(id int64) *models.User {
 
 	ret := &models.User{}
 	if err := ret.DB().First(ret, "user_id = ?", id).Error; err != nil {
@@ -22,7 +21,7 @@ func (r *userRepository) Get(id int64) *models.User {
 	return ret
 }
 
-func (r *userRepository) Update(t *models.User) (err error) {
+func (r *userDao) Update(t *models.User) (err error) {
 	ret := &models.User{
 		ID: t.ID,
 	}

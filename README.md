@@ -79,9 +79,6 @@ s,_:= tmaic.PrivateEncryption("Golang使用RSA进行公钥加密私钥解密,私
 ### 公钥解密
 dd,_ := tmaic.PublicDecrypt(s)
 
-### 注意事项：如果要使用 NSQ 队列的，不用将包注释
-
-
 ### 校验密码是否正确
 user.Password：用户密码（已加密）
 
@@ -92,6 +89,10 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
     return "返回提示信息"
 }
 ```
+
+
+
+### 注意事项：如果要使用 NSQ 队列的，不用将包注释
 
 导入包：
 
@@ -112,6 +113,11 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 //events.Initialize()
 
 //listeners.Initialize()
+
+### NSQ安装请参考：https://nsq.io/overview/quick_start.html
+
+
+
 ### 打印
 
 tmaic.Dump(mugs)
@@ -131,8 +137,6 @@ tmaic.Dump(mugs)
     
 ```
 
-
-### NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
 
 # 性能测试
@@ -156,11 +160,7 @@ ab -c 1000 -n 5000  -k http://127.0.0.1/all
 4.    go mod vendor // 将依赖包拷贝到项目目录中去
 5.    go run main.go
 
-# 使用说明
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
 
 # 参与贡献
 

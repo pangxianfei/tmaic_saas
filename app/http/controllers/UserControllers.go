@@ -51,6 +51,7 @@ func (*User) AllUser(c request.Context) {
 
 func (*User) PaginateUser(c request.Context) {
 	user := &models.User{}
+
 	c.JSON(http.StatusOK, V{"data": user})
 	return
 }

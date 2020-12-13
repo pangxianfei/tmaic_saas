@@ -50,11 +50,11 @@ type User struct {
 func (user *User) TableName() string {
     return user.SetTableName("user")
 }
-//写入前 预处理 name 字段
+
 func (user *User) SetNameAttribute(value interface{}) {
     user.Name = user.Email
 }
-//输出前 预处理 update_at 字段
+
 func (user *User) GetUpdatedAtAttribute(value interface{}) interface{} {
     return user.UpdatedAt //查询后这里可以其他处理，如格式化处理，如果是时间time 可以格式成 2020-10-01 18：00：20
 }
@@ -116,32 +116,6 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 
 ### NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
-# 队列
-### 例子：用户注册事件
-```golang
-	// 注册事件
-UserRegisteredEvent := events.UserRegistered{}
-    param := &pbs.UserRegistered{
-    UserId:              uint32(userId),
-    AffiliationFromCode: "",
-}
-if requestData.AffiliationFromCode != nil {
-    //验证码
-    param.AffiliationFromCode = *requestData.AffiliationFromCode
-}
-UserRegisteredEvent.SetParam(param)
-    
-if errs := hub.Emit(&UserRegisteredEvent); errs != nil {
-    log.Info("user registered event emit failed", tmaic.Output{"event": UserRegisteredEvent, "errors": errs})
-}
-
-```
-
-### 观察者
-
-新建一个监听器 代码如下：
-
-https://gitee.com/pangxianfei/tmaic/blob/master/app/listeners/add_user_affiliation.go
 
 
 ### 打印

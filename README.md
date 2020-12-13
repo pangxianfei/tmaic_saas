@@ -115,8 +115,9 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 //listeners.Initialize()
 
 ### NSQ安装请参考：https://nsq.io/overview/quick_start.html
+### 队列demo (test)
 
-
+*** 详情见工程项目下
 
 ### 打印
 

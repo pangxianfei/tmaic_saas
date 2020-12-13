@@ -91,6 +91,17 @@ func (r *Register) Register(c request.Context) {
 		log.Info("user registered event emit failed", tmaic.Output{"event": ur, "errors": errs})
 	}
 
+	test := events.Test{}
+
+	testparam := &pbs.Test{
+		Id: uint32(userId),
+	}
+	test.SetParam(testparam)
+
+	if errs := hub.Emit(&test); errs != nil {
+		log.Info("user test", tmaic.Output{"event": test, "errors": errs})
+	}
+
 	c.JSON(http.StatusOK, tmaic.Output{"token": token})
 	return
 }

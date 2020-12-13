@@ -116,6 +116,32 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 
 ### NSQ安装请参考：https://nsq.io/overview/quick_start.html
 
+# 队列
+### 例子：注册事件
+```golang
+	// 注册事件
+UserRegisteredEvent := events.UserRegistered{}
+    param := &pbs.UserRegistered{
+    UserId:              uint32(userId),
+    AffiliationFromCode: "",
+}
+if requestData.AffiliationFromCode != nil {
+    //验证码
+    param.AffiliationFromCode = *requestData.AffiliationFromCode
+}
+UserRegisteredEvent.SetParam(param)
+    
+if errs := hub.Emit(&UserRegisteredEvent); errs != nil {
+    log.Info("user registered event emit failed", tmaic.Output{"event": UserRegisteredEvent, "errors": errs})
+}
+
+```
+
+### 观察者
+
+新建一个监听器 代码如下：
+
+https://gitee.com/pangxianfei/tmaic/blob/master/app/listeners/add_user_affiliation.go
 
 
 ### 打印

@@ -50,11 +50,11 @@ type User struct {
 func (user *User) TableName() string {
     return user.SetTableName("user")
 }
-
+//写入前 预处理 name 字段
 func (user *User) SetNameAttribute(value interface{}) {
     user.Name = user.Email
 }
-
+//输出前 预处理 update_at 字段
 func (user *User) GetUpdatedAtAttribute(value interface{}) interface{} {
     return user.UpdatedAt //查询后这里可以其他处理，如格式化处理，如果是时间time 可以格式成 2020-10-01 18：00：20
 }

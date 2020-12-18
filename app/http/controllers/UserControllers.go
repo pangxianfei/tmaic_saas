@@ -7,10 +7,13 @@ import (
 	"github.com/pangxianfei/framework/http/middleware"
 	"github.com/pangxianfei/framework/policy"
 	"github.com/pangxianfei/framework/request"
+	"github.com/spf13/cast"
 	"net/http"
+
 	"tmaic/app/http/requests"
 	"tmaic/app/models"
 	"tmaic/app/policies"
+	"tmaic/app/service/users"
 )
 
 type User struct {
@@ -68,13 +71,11 @@ func (u *User) Update(c request.Context) {
 		return
 	}
 
-	//更新
-	/*
-		t := UserService.UserService.Get(gconv.Int64(requestData.ID))
-		t.Email = requestData.Email
-		t.Name = requestData.Name
-		_ = UserService.UserService.Update(t)
-	*/
+	// 更新
+	t := users.UserService.Get(cast.ToInt64(requestData.ID))
+	t.Email = requestData.Email
+	t.Name = requestData.Name
+	_ = users.UserService.Update(t)
 
 	var id int64
 	id = 18
@@ -95,7 +96,7 @@ func (u *User) Update(c request.Context) {
 		return
 	}
 
-	//查询
+	// 查询
 	/*
 		user := &models.User{
 			ID: 18,
@@ -105,7 +106,7 @@ func (u *User) Update(c request.Context) {
 			return
 		}*/
 
-	//删除
+	// 删除
 	/*
 		DeleteUser := models.User{
 			ID: 30,
@@ -115,7 +116,7 @@ func (u *User) Update(c request.Context) {
 			return
 		}*/
 
-	//批量查询
+	// 批量查询
 	/*
 		ctx, _ := context.WithTimeout(context.Background(), time.Second)
 

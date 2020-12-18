@@ -129,6 +129,21 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 
 *** 详情见工程项目下
 
+## 类型转化助手
+### ToInt64
+```golang
+cast.ToInt64()
+```
+### ToInt32
+```golang
+cast.ToInt32()
+```
+### ToFloat32
+```golang
+cast.ToFloat32()
+```
+### 更多方法 查看cast包	
+
 ### 打印
 
 tmaic.Dump(mugs)

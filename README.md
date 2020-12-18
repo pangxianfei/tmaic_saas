@@ -129,6 +129,81 @@ if !crypt.BcryptCheck(user.Password, requestData.Password) error{
 
 *** 详情见工程项目下
 
+### 入列（我们常说的写入 topic,生产者），以下写入topic例子
+
+```golang 
+
+	test := events.Test{}
+
+	testparam := &pbs.Test{
+		Id: uint32(userId),
+	}
+	test.SetParam(testparam)
+
+	if errs := hub.Emit(&test); errs != nil {
+		log.Info("user test", tmaic.Output{"event": test, "errors": errs})
+	}
+
+```
+
+
+
+### 出列(启动一个观察者)
+
+
+```golang 
+ 
+ 
+func init() {
+	hub.Register(&Test{})
+}
+
+type Test struct {
+	user models.User
+	hub.Listen
+}
+
+func (user *Test) Name() hub.ListenerName {
+	return "add-test" //监听器名称 后面我们会用到
+}
+
+func (user *Test) Subscribe() (eventPtrList []hub.Eventer) {
+	log.Debug("Subscribe-test")
+	return []hub.Eventer{
+		&events.Test{},
+	}
+
+}
+
+func (user *Test) Construct(paramPtr proto.Message) error {
+	/** 第一执行这里
+	  业务代码
+	*/
+	log.Debug("Construct-test")
+	return nil
+}
+func (user *Test) Handle() error {
+	/**第二执行这里
+	 最终实现业务逻辑 ：比如发邮件、消息推送、短信通知等 这些业务通常封装在 service 层，这里只是建议
+	*/
+	
+	// 更新
+	t := users.UserService.Get(cast.ToInt64(user.ID))
+	t.Email = user.Email //test 其实没有这个字段 根据需要自行组织
+	t.Name = user.Name   //test 其实没有这个字段 根据需要自行组织
+	_ = users.UserService.Update(t)
+	
+	log.Debug("Handle-test")
+	return nil
+}
+
+```
+### 实现消费,在根目录与main.go同级，
+
+go run artisan.go queue:listen test-add //test-add 是Name() 返回的
+配合supervisor进程守护
+
+
 ## 类型转化助手
 ### ToInt64
 ```golang

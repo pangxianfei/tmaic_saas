@@ -19,11 +19,11 @@ type Test struct {
 	hub.Listen
 }
 
-func (auaff *Test) Name() hub.ListenerName {
+func (user *Test) Name() hub.ListenerName {
 	return "add-test"
 }
 
-func (auaff *Test) Subscribe() (eventPtrList []hub.Eventer) {
+func (user *Test) Subscribe() (eventPtrList []hub.Eventer) {
 	log.Debug("Subscribe-test")
 	return []hub.Eventer{
 		&events.Test{},
@@ -31,17 +31,18 @@ func (auaff *Test) Subscribe() (eventPtrList []hub.Eventer) {
 
 }
 
-func (auaff *Test) Construct(paramPtr proto.Message) error {
+func (user *Test) Construct(paramPtr proto.Message) error {
 	/** 第一执行这里
 	  业务代码
 	*/
 	log.Debug("Construct-test")
 	return nil
 }
-func (userAdd *Test) Handle() error {
+func (user *Test) Handle() error {
 	/**第二执行这里
 	  业务代码
 	*/
-	log.Debug("Handle-test")
+	log.Info(user.user.ID)
+
 	return nil
 }

@@ -1,7 +1,5 @@
 # tmaic
 
-框架思想借鉴：https://gitee.com/daitougege/GinSkeleton
-
 golang iris版本：
 
 https://gitee.com/pangxianfei/tmaic-iris-mvc

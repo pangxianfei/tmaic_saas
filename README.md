@@ -254,7 +254,7 @@ ab -c 1000 -n 5000  -k http://127.0.0.1/all
 # 安装教程
 
 1.    git clone git@gitee.com:pangxianfei/tmaic.git
-2.    go mod init // 初始化go mod 包管理
+2.    go mod init tmaic // 初始化go mod 包管理,这里tmaic是指 go.mod文件下的 module tmaic,有些demo 使用了tmaic.安装后换成你自己的。
 3.    go mod tidy // 加载依赖包
 4.    go mod vendor // 将依赖包拷贝到项目目录中去
 5.    go run main.go

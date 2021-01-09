@@ -4,7 +4,7 @@ import (
 	"gitee.com/pangxianfei/frame/hub"
 	"github.com/golang/protobuf/proto"
 
-	events "tmaic/app/events/events_buffers"
+	event "tmaic/app/events/protocol_model"
 )
 
 func init() {
@@ -17,5 +17,5 @@ type Test struct {
 }
 
 func (ur *Test) ParamProto() proto.Message {
-	return &events.Test{}
+	return &event.Test{}
 }

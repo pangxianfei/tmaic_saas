@@ -1,10 +1,10 @@
 package events
 
 import (
+	"gitee.com/pangxianfei/frame/hub"
 	"github.com/golang/protobuf/proto"
 
-	"gitee.com/pangxianfei/frame/hub"
-	pbs "tmaic/app/events/events_buffers"
+	event "tmaic/app/events/protocol_model"
 )
 
 func init() {
@@ -13,8 +13,9 @@ func init() {
 
 type UserRegistered struct {
 	hub.Event
+	UserId uint32
 }
 
 func (ur *UserRegistered) ParamProto() proto.Message {
-	return &pbs.UserRegistered{}
+	return &event.UserRegistered{}
 }

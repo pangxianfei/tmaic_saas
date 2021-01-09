@@ -18,7 +18,7 @@ import (
 	"gitee.com/pangxianfei/frame/utils/jwt"
 
 	"tmaic/app/events"
-	pbs "tmaic/app/events/events_buffers"
+	pbs "tmaic/app/events/protocol_model"
 	"tmaic/app/http/requests"
 	"tmaic/app/models"
 

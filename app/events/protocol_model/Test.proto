@@ -1,6 +1,0 @@
-syntax = "proto3";
-package listenmodel;
-message Test {
-    uint32 id = 1;
-
-}

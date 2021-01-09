@@ -1,4 +1,0 @@
-package lang
-
-func Initialize() {
-}

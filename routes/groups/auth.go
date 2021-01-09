@@ -13,5 +13,5 @@ type AuthGroup struct {
 
 func (ag *AuthGroup) Group(group route.Grouper) {
 	group.POST("/login", ag.LoginController.Login).Name("login")
-	group.POST("/register", ag.RegisterController.Register)
+	group.POST("/register", ag.RegisterController.Register).Name("register")
 }

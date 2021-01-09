@@ -10,9 +10,10 @@ type BtGroup struct {
 	BtController controllers.Bt
 }
 
+// Group bt路由组
 func (bt *BtGroup) Group(group route.Grouper) {
 
 	// 磁盘使用情况
-	group.POST("/bt/GetDiskInfo", bt.BtController.GetDiskInfo)
+	group.POST("/GetDiskInfo", bt.BtController.GetDiskInfo).Name("GetDiskInfo")
 
 }

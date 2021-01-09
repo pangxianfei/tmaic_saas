@@ -11,5 +11,5 @@ type UserAffiliationGroup struct {
 }
 
 func (uaffg *UserAffiliationGroup) Group(group route.Grouper) {
-	group.GET("/all", uaffg.UserAffiliationController.RenderAll)
+	group.GET("/all", uaffg.UserAffiliationController.RenderAll).Name("RenderAll")
 }

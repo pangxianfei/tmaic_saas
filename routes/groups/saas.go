@@ -12,6 +12,6 @@ type AaasGroup struct {
 
 func (saas *AaasGroup) Group(group route.Grouper) {
 
-	group.POST("/index", saas.SassController.Index)
+	group.POST("/index", saas.SassController.Index).Name("saas.index")
 
 }

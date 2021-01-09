@@ -13,11 +13,11 @@ type UserGroup struct {
 }
 
 func (ug *UserGroup) Group(group route.Grouper) {
-	group.GET("/info/:userId", ug.UserController.Info).Can(policies.NewUserPolicy(), policy.ActionView)
+	group.GET("/info/:userId", ug.UserController.Info).Name("user.info").Can(policies.NewUserPolicy(), policy.ActionView)
 
-	group.GET("/update", ug.UserController.Update)
-	group.GET("/delete", ug.UserController.Delete)
-	group.GET("/delete-transaction", ug.UserController.DeleteTransaction)
-	group.GET("/logout", ug.UserController.LogOut)
-	group.GET("/restore", ug.UserController.Restore)
+	group.GET("/update", ug.UserController.Update).Name("user.update")
+	group.GET("/delete", ug.UserController.Delete).Name("user.delete")
+	group.GET("/delete-transaction", ug.UserController.DeleteTransaction).Name("DeleteTransaction")
+	group.GET("/logout", ug.UserController.LogOut).Name("logout")
+	group.GET("/restore", ug.UserController.Restore).Name("restore")
 }

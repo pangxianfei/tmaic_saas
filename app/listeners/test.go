@@ -6,6 +6,7 @@ import (
 	"github.com/golang/protobuf/proto"
 
 	"tmaic/app/events"
+	listenmodel "tmaic/app/events/protocol_model"
 	"tmaic/app/models"
 )
 
@@ -32,9 +33,14 @@ func (user *Test) Subscribe() (eventPtrList []hub.Eventer) {
 
 func (user *Test) Construct(paramPtr proto.Message) error {
 	/** 第一执行这里
-	  业务代码
+	  业务代码 这里通常为 Handle 数据作为准备的工作
 	*/
-	log.Debug("Construct-test")
+	test, _ := paramPtr.(*listenmodel.Test)
+	log.Debug("Construct-userid:")
+	log.Debug(test.Id)
+	// 出始化 user 数据 handle 直接拿user 数据
+	user.user.ID = int64(test.Id)
+
 	return nil
 }
 func (user *Test) Handle() error {

@@ -1,6 +1,5 @@
-# tmaic
+# tmaic saas
 
-框架思想借鉴：https://gitee.com/daitougege/GinSkeleton
 
 golang iris版本：
 

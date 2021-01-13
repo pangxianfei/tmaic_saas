@@ -85,11 +85,9 @@ func (r *Register) Register(c request.Context) {
 	ur := events.UserRegistered{}
 	param := &pbs.UserRegistered{
 		UserId:              uint32(userId),
-		AffiliationFromCode: "",
+		AffiliationFromCode: requestData.AffiliationFromCode,
 	}
-	if requestData.AffiliationFromCode == "" {
-		param.AffiliationFromCode = requestData.AffiliationFromCode
-	}
+
 	ur.SetParam(param)
 	if errs := hub.Emit(&ur); errs != nil {
 		log.Info("user registered event emit failed", tmaic.V{"event": ur, "errors": errs})

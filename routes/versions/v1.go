@@ -22,5 +22,6 @@ func RouteV1(engine *request.Engine) {
 	ver.NoAuth("", func(group route.Grouper) {
 		group.AddGroup("", &groups.AuthGroup{})
 		group.AddGroup("bt", &groups.BtGroup{})
+		group.AddGroup("ev", &groups.Events{})
 	})
 }

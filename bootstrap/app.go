@@ -26,7 +26,7 @@ func Initialize() {
 	sentry.Initialize()
 	logs.Initialize()
 	zone.Initialize()
-	lang.Initialize() // an translation must contains resources/lang/xx.json file (then a resources/lang/validation_translator/xx.go)
+	lang.Initialize()
 	cache.Initialize()
 	database.Initialize()
 	m.Initialize()

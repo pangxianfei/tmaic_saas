@@ -4,16 +4,11 @@ import (
 	"fmt"
 	"time"
 
-	"gitee.com/pangxianfei/frame/helpers/log"
 	"gitee.com/pangxianfei/frame/helpers/tmaic"
 	"gitee.com/pangxianfei/frame/http/controller"
-	"gitee.com/pangxianfei/frame/hub"
 	"gitee.com/pangxianfei/frame/request"
 	"gitee.com/pangxianfei/frame/utils/md5"
 	"github.com/qifengzhang007/goCurl"
-
-	"tmaic/app/events"
-	pbs "tmaic/app/events/protocol_model"
 )
 
 type Bt struct {
@@ -21,16 +16,6 @@ type Bt struct {
 }
 
 func (Bt *Bt) GetDiskInfo(c request.Context) {
-
-	ur := events.Test{}
-	param := &pbs.Test{
-		Id: 1,
-	}
-
-	ur.SetParam(param)
-	if errs := hub.Emit(&ur); errs != nil {
-		log.Info("user registered event emit failed", tmaic.V{"event": ur, "errors": errs})
-	}
 
 	cli := goCurl.CreateHttpClient()
 

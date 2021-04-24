@@ -73,7 +73,6 @@ func (fq *FailedQueue) FailedToDatabase(topicName string, channelName string, ms
 	return m.H().Create(&_fq)
 }
 
-
 func (fq *FailedQueue) FailedQueueById(id uint) (failedQueuerPtr queue.FailedQueuer, err error) {
 	_fq := FailedQueue{ID: &id}
 	if err := m.H().First(&_fq, false); err != nil {

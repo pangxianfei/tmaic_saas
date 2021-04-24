@@ -1,0 +1,44 @@
+APP_NAME: "tmaic"
+APP_KEY:  "p310544c037bb1026E4rnLJmpPmJ5f5SP46WXDk3ff17a71407b91747c2jHeeBe7"
+APP_ENV:  "develop"
+APP_DEBUG:  "false"
+APP_LOG:  "false"
+APP_PORT: "81"
+APP_LOCALE: "zh"
+
+MONITOR_PORT: "8080"
+MONITOR_USERNAME: "tmaic"
+MONITOR_PASSWORD: "sRaPdLrmfpY4yH4K"
+
+Mysql:
+DB_CONNECTION:  "mysql"
+DB_HOST:  "127.0.0.1"
+DB_PORT:  "3306"
+DB_DATABASE:  "www_demo_dev"
+DB_USERNAME:  "www_demo_dev"
+DB_PASSWORD:  "eG6YZxZFBsxKcfpn"
+DB_PREFIX:  "tmaic_"
+
+
+CACHE_DRIVER: "redis"
+REDIS_HOST: "127.0.0.1"
+REDIS_PORT: "6379"
+REDIS_PASSWORD:
+REDIS_DB: "0"
+REDIS_CACHE_DB: "1"
+AUTH_SIGN_KEY:  "8rWZika5Ekes9Eel65ksf6E4rnLJmpPmJ5f5SP46W"
+TOKE_KEY_ENCRYPTION:  "true"
+
+QUEUE_CONNECTION: "nsq"
+QUEUE_NSQD_TCP_HOST: "127.0.0.1"
+QUEUE_NSQD_TCP_PORT: "4150"
+QUEUE_NSQLOOKUPD_HTTP_HOST: "http://127.0.0.1"
+QUEUE_NSQLOOKUPD_HTTP_PORT: "4161"
+QUEUE_MAX_IN_FLIGHT:  "50"
+
+PUBLIC_KEY: "./storage/cert/public.pem"
+PRIVATE_KEY:  "./storage/cert/private.pem"
+TEMPLATE_TPL: "./resources/views/"
+SUFFIX: ".html"
+LAYOUTS:  "layouts/master"
+PUBLIC_PATH: " /public"

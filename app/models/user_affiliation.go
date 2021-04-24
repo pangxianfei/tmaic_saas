@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/jinzhu/gorm"
+	"gorm.io/gorm"
 
 	"gitee.com/pangxianfei/frame/helpers/debug"
 	"gitee.com/pangxianfei/frame/helpers/ptr"

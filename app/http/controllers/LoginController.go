@@ -22,7 +22,7 @@ type Login struct {
 }
 
 func (l *Login) Login(c request.Context) {
-	// validate and assign requestData
+
 	var requestData requests.UserLogin
 	if !l.ValidateJSON(c, &requestData, true) {
 		return

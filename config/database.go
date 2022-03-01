@@ -31,7 +31,7 @@ func init() {
 	database["redis"] = map[string]interface{}{
 
 		"options": map[string]interface{}{
-			"prefix": Env("APP_NAME", "totoval").(string) + "_database_",
+			"prefix": Env("APP_NAME", "tmaic").(string) + "_database_",
 		},
 
 		"default": map[string]interface{}{

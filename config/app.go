@@ -7,7 +7,7 @@ import (
 func init() {
 	app := make(map[string]interface{})
 
-	app["name"] = Env("APP_NAME", "Totoval")
+	app["name"] = Env("APP_NAME", "tmaic")
 	app["env"] = Env("APP_ENV", "production")
 	app["debug"] = Env("APP_DEBUG", false)
 	app["log_level"] = Env("APP_LOG_LEVEL", "trace")

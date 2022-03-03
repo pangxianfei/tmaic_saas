@@ -2,7 +2,7 @@ APP_NAME: "tmaic"
 APP_KEY:  "p310544c037bb1026E4rnLJmpPmJ5f5SP46WXDk3ff17a71407b91747c2jHeeBe7"
 APP_ENV:  "develop"
 APP_DEBUG:  "false"
-APP_LOG:  "false"
+APP_LOG:  "true"
 APP_PORT: "81"
 APP_LOCALE: "zh"
 

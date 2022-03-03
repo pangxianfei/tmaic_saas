@@ -13,22 +13,14 @@ func TenantDbMiddle() request.HandlerFunc {
 		if err != nil {
 			panic("userid is not null")
 		}
-
 		services.UserTokenService.GetCurrent(c)
-
 		if c.ScanUserWithJSON() {
 			return
 		}
 		users := c.User().Value().(*models.User)
-
-		// debug.Dump(users)
-
 		c.Set("users", users)
 		c.Set("userid", userid)
 		c.Set("TenantId", users.TenantsId)
-
-		// debug.Dump(c.UserId())
-
 		c.Next()
 	}
 }

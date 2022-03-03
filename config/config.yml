@@ -16,7 +16,7 @@ DB_HOST:  "127.0.0.1"
 DB_PORT:  "3306"
 DB_DATABASE:  "www_demo_dev"
 DB_USERNAME:  "www_demo_dev"
-DB_PASSWORD:  "eG6YZxZFBsxKcfpn"
+DB_PASSWORD:  "wdFNWbP3MbZaFLHD"
 DB_PREFIX:  "tmaic_"
 
 

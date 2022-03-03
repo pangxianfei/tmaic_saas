@@ -7,14 +7,11 @@ import (
 	"gitee.com/pangxianfei/frame/helpers/zone"
 	"gitee.com/pangxianfei/frame/http/middleware"
 	"gitee.com/pangxianfei/frame/logs"
-	"gitee.com/pangxianfei/frame/queue"
+	//"gitee.com/pangxianfei/frame/queue"
 	"gitee.com/pangxianfei/frame/request"
 	"gitee.com/pangxianfei/frame/sentry"
 	"gitee.com/pangxianfei/frame/validator"
 
-	"tmaic/app/events"
-	"tmaic/app/jobs"
-	"tmaic/app/listeners"
 	"tmaic/config"
 	"tmaic/resources/lang"
 
@@ -31,10 +28,10 @@ func Initialize() {
 	database.Initialize()
 	m.Initialize()
 
-	queue.Initialize()
-	jobs.Initialize()
-	events.Initialize()
-	listeners.Initialize()
+	//queue.Initialize()
+	//jobs.Initialize()
+	//events.Initialize()
+	//listeners.Initialize()
 
 	validator.UpgradeValidatorV8toV9()
 }

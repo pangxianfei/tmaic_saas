@@ -71,41 +71,4 @@ func (s *userTokenService) GetCurrent(c request.Context) *models.User {
 	c.Set("TenantsDB", TenantsModel)
 
 	return user
-
-	// userToken := cache.UserTokenCache.Get(token)
-	// 没找到授权
-	/*
-		if userToken == nil || userToken.Status == constants.StatusDeleted {
-			return nil
-		}
-
-		// 授权过期
-		if userToken.ExpiredAt <= date.NowTimestamp() {
-			return nil
-		}
-		user := cache.UserCache.Get(userToken.UserId)
-
-		if user == nil || user.Status != constants.StatusOk {
-			return nil
-		}*/
-
 }
-
-/*
-// CheckLogin 检查登录状态
-func (s *userTokenService) CheckLogin(ctx request.Context) (*model.User, *simple.CodeError) {
-	user := s.GetCurrent(ctx)
-
-}
-*/
-/*
-// 退出登录
-func (s *userTokenService) Signout(ctx request.Context) error {
-
-}
-
-// 从请求体中获取UserToken
-func (s *userTokenService) GetUserToken(ctx iris.Context) string {
-
-}
-*/

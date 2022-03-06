@@ -5,7 +5,7 @@ import (
 	"gitee.com/pangxianfei/frame/saas"
 )
 
-type SaasUser struct {
+type User struct {
 	ID        int64     `gorm:"column:user_id;primary_key;auto_increment"`
 	Name      string    `gorm:"column:user_name;type:varchar(100)"`
 	TenantsId int64     `gorm:"column:tenants_id;type:int unsigned"`

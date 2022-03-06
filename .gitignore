@@ -1,5 +1,10 @@
 .idea
+.idea/
 /vendor/
 node_modules/
 npm-debug.log
 yarn-error.log
+*.exe
+.gitee/
+.gitee
+*.zip

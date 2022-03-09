@@ -1,6 +1,7 @@
 package bootstrap
 
 import (
+	"fmt"
 	"gitee.com/pangxianfei/frame/cache"
 	"gitee.com/pangxianfei/frame/database"
 	"gitee.com/pangxianfei/frame/helpers/m"
@@ -43,6 +44,6 @@ func Middleware(r *request.Engine) {
 		r.Use(middleware.Logger())
 		r.Use(middleware.Recovery())
 	}
-
+	fmt.Println("中间件")
 	r.Use(middleware.Locale())
 }
